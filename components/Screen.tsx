@@ -12,12 +12,9 @@ interface Props {
 }
 
 export default ({ children, style, navigation, title }: Props) => {
-
-    const width = Dimensions.get('window').width;
-    const height = Dimensions.get('window').height;
-    const [screenStyle, setScreenStyle] = useState<StyleProp<ViewStyle>>({
+    const screenStyle = {
         flex: 1
-    })
+    }
 
     return (
         <View style={screenStyle}>
