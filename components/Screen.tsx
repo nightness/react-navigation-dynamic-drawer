@@ -17,14 +17,12 @@ export default ({ children, style, navigation, title }: Props) => {
     }
 
     return (
-        <View style={screenStyle}>
-            <SafeAreaView style={[screenStyle, style]}>
-                <ScreenHeader
-                    navigation={navigation}
-                    title={title}
-                />
-                {children}
-            </SafeAreaView>
-        </View>
+        <SafeAreaView style={[screenStyle, style]}>
+            <ScreenHeader
+                navigation={navigation}
+                title={title}
+            />
+            {children}
+        </SafeAreaView>
     )
 }
