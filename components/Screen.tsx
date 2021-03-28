@@ -12,12 +12,8 @@ interface Props {
 }
 
 export default ({ children, style, navigation, title }: Props) => {
-    const screenStyle = {
-        flex: 1
-    }
-
     return (
-        <SafeAreaView style={[screenStyle, style]}>
+        <SafeAreaView style={[{ flex: 1 }, style]}>
             <ScreenHeader
                 navigation={navigation}
                 title={title}
