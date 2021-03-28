@@ -15,7 +15,6 @@ export default () => {
         <DrawerProvider screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
                 drawerContent={props => <DrawerContent {...props} />}
-                sceneContainerStyle={{ padding: 0, paddingLeft: 0, paddingRight: 0 }}
                 drawerStyle={{
                     //width: '200' --- Find and remove padding to the right of the badges
                 }}
