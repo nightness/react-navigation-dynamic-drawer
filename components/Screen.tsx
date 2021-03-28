@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import ScreenHeader from './ScreenHeader'
-import { LinearGradient } from 'expo-linear-gradient'
-import { StyleProp, ViewStyle, View, Dimensions } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface Props {
