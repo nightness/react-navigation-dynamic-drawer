@@ -34,8 +34,8 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
     const [badges, setBadges] = useState<Badges>({})
     const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
     const [state, setState] = useState<DrawerNavigationState<ParamListBase>>()
-    const [screenIndex, setScreenIndex] = useState<number>()
-
+    const screenIndex = state ? state.index : -1
+    
     const setBadge = (routeName: string, value: string): void => {
         let newState = {...badges}
         newState[routeName] = value
@@ -45,7 +45,6 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
     const setDrawerContent = (currentNavigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => {
         if (currentNavigation != navigation)
             setNavigation(currentNavigation)
-        setScreenIndex(state.index)
         setState(state)
     }
 
@@ -60,12 +59,6 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         })        
         return true
     }
-
-    // Used for watching for route index changes
-    useEffect(() => {
-        if (state && state.index != screenIndex)
-            setScreenIndex(state.index)
-    }, [state])
 
     return (
         <DrawerContext.Provider

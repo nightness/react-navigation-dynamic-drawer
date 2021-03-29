@@ -1,4 +1,3 @@
-import { Section } from 'react-native-paper/lib/typescript/components/Drawer/Drawer'
 import { Screens, ScreenConfig } from './NavigationTypes'
 
 export type ReducerActionType = 'insert' | 'remove' | 'append'

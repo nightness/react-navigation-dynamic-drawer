@@ -4,20 +4,25 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from '../navigation/DrawerContext'
 import { DrawerContent } from './DrawerContent'
 import { RoutingReducer } from './RouteReducer'
-import { rootScreens } from './DefaultRoutes'
+import { Screens } from './NavigationTypes'
+import { StyleProp, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
 
-export default () => {
-    const [screens, screensDispatch] = useReducer(RoutingReducer, rootScreens)
+interface Props {
+    initialScreens: Screens,
+    drawerStyle?: StyleProp<ViewStyle>
+}
+
+export default ({ initialScreens, drawerStyle, ...restProps }: Props) => {
+    // The stateful list of screens
+    const [screens, screensDispatch] = useReducer(RoutingReducer, initialScreens)
 
     return (
         <DrawerProvider screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
-                drawerContent={props => <DrawerContent {...props} />}
-                drawerStyle={{
-                    //width: '200' --- Find and remove padding to the right of the badges
-                }}
+                {...restProps}
+                drawerContent={props => <DrawerContent {...props} />}                
             >
                 {
                     screens.map((screen) => {
@@ -26,7 +31,7 @@ export default () => {
                                 name={screen.name}
                                 component={screen.component}
                                 initialParams={screen.initialParams}
-                                key={`root-${screen.name}`} />
+                                key={`screen-${screen.name}`} />
                         )
                     })
                 }

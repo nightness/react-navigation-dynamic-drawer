@@ -8,13 +8,10 @@ import DrawerContentItem from './DrawerContentItem'
 import { NavigationParams } from './NavigationTypes'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const DrawerContent = ({ navigation, ...restProps }: DrawerContentComponentProps) => {
+export const DrawerContent = (props: DrawerContentComponentProps) => {
     const { badges, setDrawerContent } = useContext(DrawerContext)
-
-    const state = restProps.state;
-    const routeNames = state.routeNames
-    const routes = state.routes
-
+    const { state, navigation } = props;
+    const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
         navigation.closeDrawer()
         navigation.navigate(screenName)
@@ -26,14 +23,13 @@ export const DrawerContent = ({ navigation, ...restProps }: DrawerContentCompone
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <DrawerContentScrollView bounces={false} {...restProps}>
+            <DrawerContentScrollView bounces={false} {...props}>
                 {routeNames.map((routeName) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
                     return (
                         <DrawerContentItem
-                            navigation={navigation}
-                            {...restProps}
+                            {...props}
                             activeTintColor={params?.activeTintColor}
                             inactiveTintColor={params?.inactiveTintColor}
                             labelText={routeName}
