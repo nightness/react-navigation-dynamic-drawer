@@ -4,7 +4,7 @@ import React, { ComponentType, createContext, useContext, useEffect, useState, u
 //import { NavigationParams } from './DrawerParams'
 import { rootScreens } from './DefaultRoutes'
 import { Badges, Screens, ScreenConfig, Notifications } from './NavigationTypes'
-import { ReducerActionType } from './RouteReducer'
+import { ReducerActionType } from './RoutingReducer'
 
 type ContextType = {
     badges: Badges,

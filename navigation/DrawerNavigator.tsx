@@ -3,7 +3,7 @@ import React, { useContext, useReducer } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from '../navigation/DrawerContext'
 import { DrawerContent } from './DrawerContent'
-import { RoutingReducer } from './RouteReducer'
+import { RoutingReducer } from './RoutingReducer'
 import { Screens } from './NavigationTypes'
 import { StyleProp, ViewStyle } from 'react-native'
 
