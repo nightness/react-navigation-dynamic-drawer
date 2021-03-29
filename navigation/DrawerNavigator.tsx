@@ -14,7 +14,7 @@ interface Props {
     drawerStyle?: StyleProp<ViewStyle>
 }
 
-export default ({ initialScreens, drawerStyle, ...restProps }: Props) => {
+export default ({ initialScreens, ...restProps }: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(RoutingReducer, initialScreens)
 
