@@ -7,7 +7,7 @@ Dynamically add or remove components to/from a react-navigation-drawer
 ```tsx
 
 <NavigationContainer>
-    <DrawerNavigator initialScreens />
+    <DrawerNavigator initialScreens={initialScreens} />
 </NavigationContainer>
 ```
 
