@@ -15,7 +15,7 @@ DrawerNavigator generates it's own children based on initialScreens, and contain
 
 ```tsx
 export default ({ initialScreens, ...restProps }: Props) => {
-    // The stateful list of screens
+    // The stateful array of screens
     const [screens, screensDispatch] = useReducer(RoutingReducer, initialScreens)
 
     return (
