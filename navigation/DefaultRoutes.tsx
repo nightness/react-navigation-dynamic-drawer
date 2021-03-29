@@ -3,7 +3,7 @@ import { Home } from '../screens/Home'
 import { Dashboard } from '../screens/Dashboard'
 import { Playground } from '../screens/Playground'
 
-export const rootScreens: Screens = [
+export const initialScreens: Screens = [
     {
         name: "Home",
         component: Home,

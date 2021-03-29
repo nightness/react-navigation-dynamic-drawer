@@ -11,7 +11,6 @@ export interface NavigationParams {
     inactiveTintColor?: string,
     iconGroup?: string,
     iconName: string,
-    badgeLabel: string,
     focusedIconName?: string,
 }
 
