@@ -1,4 +1,5 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer'
+import { NavigationProp } from '@react-navigation/native'
 import React, { useContext } from 'react'
 import { View, Button } from 'react-native'
 import { DrawerContext } from '../navigation/DrawerContext'

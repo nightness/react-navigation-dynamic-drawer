@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleProp, TextStyle, ViewStyle, View } from 'react-native'
 import { DrawerItem } from '@react-navigation/drawer'
 import { Icon } from 'react-native-elements'
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
 import { Text, Badge } from 'react-native-paper'
+//import { Ionicons } from '@expo/vector-icons'
 
 declare type Props = {
     /**
