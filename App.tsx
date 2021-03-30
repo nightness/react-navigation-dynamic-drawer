@@ -1,4 +1,6 @@
 import * as React from 'react';
+// @ts-ignore
+import { ModalPortal } from 'react-native-modals'
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
 import DrawerNavigator from './navigation/DrawerNavigator'
 import { NavigationElements } from './navigation/NavigationTypes'
@@ -8,11 +10,12 @@ import { Playground } from './screens/Playground'
 
 
 export default function App() {
-  return (
+    return (
         <NavigationContainer>
-          <DrawerNavigator initialScreens={initialPaths} />
+            <DrawerNavigator initialScreens={initialPaths} />
+            <ModalPortal />
         </NavigationContainer>
-  );
+    );
 }
 
 const initialPaths: NavigationElements = [

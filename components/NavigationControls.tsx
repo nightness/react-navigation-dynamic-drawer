@@ -1,16 +1,30 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Button } from 'react-native'
 import { DrawerContext } from '../navigation/DrawerContext'
 import { Dynamic } from '../screens/Dynamic'
+import { MessageBoxModal } from '../modals/MessageBox'
 
 interface Props {
     style?: object,
     navigation: DrawerNavigationProp<any>,
 }
 
+type MessageBoxState = {
+    title: string,
+    message: string,
+    askYesNo: boolean,
+    confirm?: () => void
+}
+
 export default ({ style, navigation }: Props) => {
     const { screens, screenIndex, screensManager } = useContext(DrawerContext)
+    const [showMessageBoxModal, setShowLogoutModal] = useState(false)
+    const [messageBoxState, setMessageBoxState] = useState<MessageBoxState>({
+        title: '',
+        message: '',
+        askYesNo: false,
+    })
 
     const getScreenConfig = () => {
         return (
@@ -25,50 +39,75 @@ export default ({ style, navigation }: Props) => {
                     iconName: 'paperclip',
                     focusedIconName: 'bug-outline'
                 }
-            }            
+            }
         )
     }
-        
+
+    const showMessageBox = (title: string, message: string, askYesNo: boolean = false, confirm?: () => void) => {
+        setMessageBoxState({ title, message, askYesNo, confirm })
+        setShowLogoutModal(true)
+    }
+
     return (
-        <View style={[{ flex: 1 }, style]}>
-            <Button
-                title='Open Drawer'
-                onPress={(d) => {
-                    navigation.openDrawer()
-                }}
+        <>
+            <MessageBoxModal
+                title={messageBoxState.title}
+                message={messageBoxState.message}
+                shown={showMessageBoxModal}
+                askYesNo={messageBoxState.askYesNo}
+                confirm={messageBoxState.confirm}
+                dismiss={() => setShowLogoutModal(false)}
             />
-            <Button
-                title='Back'
-                onPress={(d) => {
-                    navigation.goBack()
-                }}
-            />
-            <Button
-                title='Delete the Playground Screen'
-                onPress={() => {
-                    screens.forEach((screen, index) => {
-                        if (screensManager && screen.name === 'Playground') {
-                            screensManager('remove', index)
-                        }                            
-                    })
-                }}
-            />
-            <Button
-                title='Delete this Screen'
-                onPress={() => {
-                    if (screensManager && typeof screenIndex === 'number' && screenIndex >=0) {
-                        screensManager('remove', screenIndex)
-                    }
-                }}
-            />            
-            <Button
-                title='Add a Dynamic'
-                onPress={() => {
-                    if (screensManager) {
-                        screensManager('append', 0, getScreenConfig())
-                    }
-                }}
-            />
-        </View>
+            <View style={[{ flex: 1 }, style]}>
+                <Button
+                    title='Open Drawer'
+                    onPress={(d) => {
+                        navigation.openDrawer()
+                    }}
+                />
+                <Button
+                    title='Back'
+                    onPress={(d) => {
+                        navigation.goBack()
+                    }}
+                />
+                <Button
+                    title='Delete the Playground Screen'
+                    onPress={() => {
+                        let found = false
+                        screens.forEach((screen, index) => {
+                            if (screensManager && screen.name === 'Playground') {
+                                found = true
+                                screensManager('remove', index)
+                            }
+                        })
+                        if (!found) {
+                            showMessageBox('Failed', 'There is no playground screen')
+                        }
+                    }}
+                />
+                <Button
+                    title='Delete this Screen'
+                    onPress={() => {
+                        if (screensManager && typeof screenIndex === 'number' && screenIndex >= 0) {
+                            const name = screens[screenIndex].name
+                            showMessageBox(
+                                'Confirmation',
+                                `Are you sure you want to remove ${name}?`,
+                                true, () => screensManager('remove', screenIndex)
+                            )
+                        }
+                    }}
+                />
+                <Button
+                    title='Add a Dynamic'
+                    onPress={() => {
+                        if (screensManager) {
+                            screensManager('append', 0, getScreenConfig())
+                        }
+                    }}
+                />
+            </View>
+        </>
     )
 }
