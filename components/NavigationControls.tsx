@@ -16,7 +16,7 @@ export default ({ style, navigation }: Props) => {
     const getScreenConfig = () => {
         return (
             {
-                // Names here needs to be unique for routing to work (refactor the random out later)
+                // Names here needs to be unique for routing to work
                 name: `Dynamic ${(Math.floor(Math.random() * 10000))}`,
                 component: Dynamic,
                 initialParams: {
