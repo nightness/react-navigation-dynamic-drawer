@@ -79,6 +79,7 @@ export default ({ style, navigation }: Props) => {
                             if (screensManager && screen.name === 'Playground') {
                                 found = true
                                 screensManager('remove', index)
+                                showMessageBox('Completed', 'Removed playground screen')
                             }
                         })
                         if (!found) {
