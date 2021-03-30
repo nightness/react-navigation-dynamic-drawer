@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React from 'react'
 import { Badge } from 'react-native-paper'
-import { View, Image, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import { Header } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { DrawerNavigationProp } from '@react-navigation/drawer'
 
 interface Props {
-    navigation: StackNavigationProp<any>,
+    navigation: DrawerNavigationProp<any>,
     title: string,
     hamburgerBadgeText?: string,
     photoURL?: string | null,
@@ -18,11 +18,8 @@ interface Props {
 export default ({
     navigation,
     title,
-    photoURL,
     hamburgerBadgeText,
     hasDrawerNavigation = true,
-    hasHome = false,
-    hasBack = false,
 }: Props) => {
 
     const iconSize = 28
@@ -47,24 +44,6 @@ export default ({
                         : <></>
                     }
                 </>
-            ) : (
-                <></>
-            )}
-            {hasHome ? (
-                <MaterialIcons
-                    name="home"
-                    size={iconSize}
-                    onPress={() => navigation.popToTop()}
-                />
-            ) : (
-                <></>
-            )}
-            {hasBack ? (
-                <MaterialIcons
-                    name="navigate-before"
-                    size={iconSize}
-                    onPress={() => navigation.pop()}
-                />
             ) : (
                 <></>
             )}

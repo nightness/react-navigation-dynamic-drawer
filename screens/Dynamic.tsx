@@ -1,26 +1,18 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { DefaultRouterOptions } from '@react-navigation/native'
-import { Button } from 'react-native-elements'
+import React from 'react'
+import { DrawerNavigationProp } from '@react-navigation/drawer'
+import { Text } from 'react-native'
 import Screen from '../components/Screen'
-import { DrawerContext } from '../navigation/DrawerContext'
+import NavigationControls from '../components/NavigationControls'
 
 interface Props {
-    navigation: DefaultRouterOptions
+    navigation: DrawerNavigationProp<any>
 }
 
 export const Dynamic = ({ navigation }: Props) => {
-    const { screensManager, screenIndex } = useContext(DrawerContext)
-    
     return (
         <Screen navigation={navigation} title="Dynamic">
-            <Button
-                title='Delete this Screen'
-                onPress={() => {
-                    if (screensManager && screenIndex) {
-                        screensManager('remove', screenIndex)
-                    }
-                }}
-            />
+            <Text>Dynamic</Text>
+            <NavigationControls navigation={navigation} />            
         </Screen>
     )
 }

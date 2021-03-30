@@ -1,26 +1,19 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { DefaultRouterOptions } from '@react-navigation/native'
+import React from 'react'
+import { Text } from 'react-native'
+import { DrawerNavigationProp } from '@react-navigation/drawer'
 import Screen from '../components/Screen'
-import { Button } from 'react-native-elements'
-import { DrawerContext } from '../navigation/DrawerContext'
+import NavigationControls from '../components/NavigationControls'
 
 interface Props {
-    navigation: DefaultRouterOptions
+    navigation: DrawerNavigationProp<any>
 }
 
 // Playground
 export const Playground = ({ navigation }: Props) => {
-    const { setBadge, screensManager } = useContext(DrawerContext)
     return (
         <Screen navigation={navigation} title="Playground">
-            <Button
-                title='Delete the Playground Screen'
-                onPress={() => {
-                    if (screensManager) {
-                        screensManager('remove', 2)
-                    }
-                }}
-            />
+            <Text>Playground</Text>
+            <NavigationControls navigation={navigation} />
         </Screen>
     )
 }
