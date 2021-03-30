@@ -1,6 +1,19 @@
-# EARLY DOCUMENTATION
+# ****EARLY DOCUMENTATION****
 # react-navigation-dynamic-drawer
-Dynamically add or remove components to/from a react-navigation-drawer
+Dynamically add or remove components to/from a react-navigation/drawer. I'm working on developing a robust drawer navigator.
+
+# Setup
+
+```
+npm i -g expo-cli
+yarn
+```
+
+# Metro Server Startup
+
+```
+expo start
+```
 
 # Component Layout
 
