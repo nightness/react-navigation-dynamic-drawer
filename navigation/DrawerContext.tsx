@@ -2,7 +2,7 @@
 import { DrawerNavigationState, NavigationHelpers, ParamListBase } from '@react-navigation/native'
 import React, { ComponentType, createContext, useContext, useEffect, useState, useReducer, ReducerAction } from 'react'
 //import { NavigationParams } from './DrawerParams'
-import { rootScreens } from './DefaultRoutes'
+import { initialScreens } from './DefaultRoutes'
 import { Badges, Screens, ScreenConfig, Notifications } from './NavigationTypes'
 import { ReducerActionType } from './RoutingReducer'
 
@@ -19,7 +19,7 @@ type ContextType = {
 
 export const DrawerContext = createContext<ContextType>({
     badges: {},
-    screens: rootScreens,
+    screens: initialScreens,
     setBadge: (routeName: string, value: string) => undefined,
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
