@@ -103,8 +103,10 @@ export default ({ style, navigation }: Props) => {
                 <Button
                     title='Add a Dynamic'
                     onPress={() => {
+                        const screenConfig = getScreenConfig()
                         if (screensManager) {
-                            screensManager('append', 0, getScreenConfig())
+                            screensManager('append', 0, screenConfig)
+                            showMessageBox('Completed', `Add a new dynamic screen called '${screenConfig.name}'`)
                         }
                     }}
                 />
