@@ -9,7 +9,7 @@ npm i -g expo-cli
 yarn
 ```
 
-# Metro Server Startup
+# Expo Server Startup
 
 ```
 expo start
