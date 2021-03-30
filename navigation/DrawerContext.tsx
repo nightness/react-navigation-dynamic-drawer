@@ -45,15 +45,11 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const screensManager = (action: ReducerActionType, index: number, screen?: NavigationElement) => {
+    const screensManager = (type: ReducerActionType, index: number, screen?: NavigationElement) => {
         // If removing the current screen, go back in the history first, then remove
-        if (action === 'remove' && index === screenIndex && navigation)
+        if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
             navigation.goBack()
-        screensDispatch({
-            type: action,
-            index,
-            screen
-        })        
+        screensDispatch({ type, index, screen })
         return true
     }
 
