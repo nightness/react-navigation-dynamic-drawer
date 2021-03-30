@@ -106,7 +106,7 @@ export default ({ style, navigation }: Props) => {
                         const screenConfig = getScreenConfig()
                         if (screensManager) {
                             screensManager('append', 0, screenConfig)
-                            showMessageBox('Completed', `Add a new dynamic screen called '${screenConfig.name}'`)
+                            showMessageBox('Completed', `Added a new dynamic screen called '${screenConfig.name}'`)
                         }
                     }}
                 />
