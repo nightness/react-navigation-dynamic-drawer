@@ -13,10 +13,12 @@ export type ReducerAction = {
 }
 
 export const RoutingReducer = (currentState: NavigationElements, action: ReducerAction) => {
+    const index = typeof action.index === 'number' && 
+        action.index >= 0 && action.index < currentState.length ? action.index : -1
     switch (action.type) {
         case 'insert': {
-            if (typeof action.index === 'number' && action.screen) {
-                currentState.splice(action.index, 0, action.screen)
+            if (index != -1 && action.screen) {
+                currentState.splice(index, 0, action.screen)
                 return [...currentState]
             }
             return currentState
@@ -27,8 +29,8 @@ export const RoutingReducer = (currentState: NavigationElements, action: Reducer
             return currentState
         }
         case 'remove': {
-            if (typeof action.index === 'number' && action.index < currentState.length) {
-                currentState.splice(action.index, 1)
+            if (index != -1) {
+                currentState.splice(index, 1)
                 return [...currentState]
             }
             return currentState
