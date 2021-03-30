@@ -17,27 +17,31 @@ export const MessageBoxModal = ({ title, message, shown, confirm, askYesNo, dism
             <Text style={{ fontWeight: '700', fontSize: 20, alignSelf: 'center' }}>{title}</Text>
             <View>
                 <Text>{message}</Text>
-                {confirm ?
-                    <View style={{ alignSelf: 'center', flexDirection: 'row' }}>
+                <View style={{ alignSelf: 'center', flexDirection: 'row' }}>
+                    {confirm ?
+                        <>
+                            <View style={{ margin: 5 }}>
+                                <Button
+                                    title={askYesNo ? 'Yes' : 'Ok'}
+                                    onPress={confirm}
+                                />
+                            </View>
+                            <View style={{ margin: 5 }}>
+                                <Button
+                                    title={askYesNo ? 'No' : 'Cancel'}
+                                    onPress={dismiss}
+                                />
+                            </View>
+                        </>
+                        :
                         <View style={{ margin: 5 }}>
                             <Button
-                                title={askYesNo ? 'Yes' : 'Ok'}
-                                onPress={confirm}
-                            />
-                        </View>
-                        <View style={{ margin: 5 }}>
-                            <Button
-                                title={askYesNo ? 'No' : 'Cancel'}
+                                title='Ok'
                                 onPress={dismiss}
                             />
                         </View>
-                    </View>
-                    :
-                    <Button
-                        title='Ok'
-                        onPress={dismiss}
-                    />
-                }
+                    }
+                </View>
             </View>
         </Modal>
     )

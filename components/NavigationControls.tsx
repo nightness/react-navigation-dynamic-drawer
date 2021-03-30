@@ -68,7 +68,10 @@ export default ({ style, navigation }: Props) => {
                 <Button
                     title='Back'
                     onPress={(d) => {
-                        navigation.goBack()
+                        if (navigation.canGoBack())
+                            navigation.goBack()
+                        else
+                            showMessageBox('Failed', 'There is no history to go back to!')
                     }}
                 />
                 <Button
