@@ -1,4 +1,4 @@
-import { Paths, PathConfig } from './NavigationTypes'
+import { NavigationElements, NavigationElement } from './NavigationTypes'
 
 export type ReducerActionType =
     'insert' | 'remove' | 'append' |
@@ -6,13 +6,13 @@ export type ReducerActionType =
 
 export type ReducerAction = {
     type: ReducerActionType,
-    screen?: PathConfig,
+    screen?: NavigationElement,
     index?: number,
     name?: string,
-    children?: Paths
+    children?: NavigationElements
 }
 
-export const RoutingReducer = (currentState: Paths, action: ReducerAction) => {
+export const RoutingReducer = (currentState: NavigationElements, action: ReducerAction) => {
     switch (action.type) {
         case 'insert': {
             if (typeof action.index === 'number' && action.screen) {

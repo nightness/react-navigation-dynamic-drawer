@@ -1,13 +1,13 @@
 import { DrawerNavigationState, NavigationHelpers, ParamListBase } from '@react-navigation/native'
 import React, { createContext, useState } from 'react'
-import { Badges, Paths, PathConfig } from './NavigationTypes'
+import { Badges, NavigationElements, NavigationElement } from './NavigationTypes'
 import { ReducerActionType } from './RoutingReducer'
 
 type ContextType = {
     badges: Badges,
     setBadge: (routeName: string, value: string) => void,
-    screens: Paths,
-    screensManager?: (action: ReducerActionType, index: number, screen?: PathConfig) => boolean,
+    screens: NavigationElements,
+    screensManager?: (action: ReducerActionType, index: number, screen?: NavigationElement) => boolean,
     navigation?: NavigationHelpers<any>,
     state?: DrawerNavigationState<ParamListBase>,
     screenIndex?: number,
@@ -23,7 +23,7 @@ export const DrawerContext = createContext<ContextType>({
 
 interface Props {
     children: JSX.Element | JSX.Element[],
-    screens: Paths,
+    screens: NavigationElements,
     screensDispatch: React.Dispatch<any>,
 }
 
@@ -45,7 +45,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const screensManager = (action: ReducerActionType, index: number, screen?: PathConfig) => {
+    const screensManager = (action: ReducerActionType, index: number, screen?: NavigationElement) => {
         // If removing the current screen, go back in the history first, then remove
         if (action === 'remove' && index === screenIndex && navigation)
             navigation.goBack()

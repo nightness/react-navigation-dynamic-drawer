@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
 import DrawerNavigator from './navigation/DrawerNavigator'
-import { Paths } from './navigation/NavigationTypes'
+import { NavigationElements } from './navigation/NavigationTypes'
 import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
@@ -15,7 +15,7 @@ export default function App() {
   );
 }
 
-const initialPaths: Paths = [
+const initialPaths: NavigationElements = [
     {
         name: "Home",
         component: Home,

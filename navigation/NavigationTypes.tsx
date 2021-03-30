@@ -14,12 +14,12 @@ export interface NavigationParams {
     focusedIconName?: string,
 }
 
-export type PathConfig = {
+export type NavigationElement = {
     name: string,
     component: ComponentType<any>,
     initialParams: NavigationParams,
     claims?: string[]
 }
 
-export type Paths = PathConfig[]
+export type NavigationElements = NavigationElement[]
 
