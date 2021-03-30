@@ -1,11 +1,11 @@
 import { NavigationElements, NavigationElement } from './NavigationTypes'
 
-export type ReducerActionType =
+export type ReducerActions =
     'insert' | 'remove' | 'append' |
     'insert-child' | 'remove-child' | 'append-child'
 
 export type ReducerAction = {
-    type: ReducerActionType,
+    action: ReducerActions,
     screen?: NavigationElement,
     index?: number,
     name?: string,
@@ -13,7 +13,7 @@ export type ReducerAction = {
 }
 
 export const RoutingReducer = (currentState: NavigationElements, action: ReducerAction) => {
-    switch (action.type) {
+    switch (action.action) {
         case 'insert': {
             if (typeof action.index === 'number' && action.screen) {
                 currentState.splice(action.index, 0, action.screen)
