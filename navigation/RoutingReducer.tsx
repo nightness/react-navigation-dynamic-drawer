@@ -1,15 +1,18 @@
-import { Screens, ScreenConfig } from './NavigationTypes'
+import { Paths, PathConfig } from './NavigationTypes'
 
-export type ReducerActionType = 'insert' | 'remove' | 'append'
+export type ReducerActionType =
+    'insert' | 'remove' | 'append' |
+    'insert-child' | 'remove-child' | 'append-child'
 
 export type ReducerAction = {
     type: ReducerActionType,
-    screen?: ScreenConfig,
+    screen?: PathConfig,
     index?: number,
     name?: string,
+    children?: Paths
 }
 
-export const RoutingReducer = (currentState: Screens, action: ReducerAction) => {
+export const RoutingReducer = (currentState: Paths, action: ReducerAction) => {
     switch (action.type) {
         case 'insert': {
             if (typeof action.index === 'number' && action.screen) {
@@ -29,6 +32,15 @@ export const RoutingReducer = (currentState: Screens, action: ReducerAction) => 
                 currentState.splice(action.index, 1)
                 return [...currentState]
             }
+            return currentState
+        }
+        case 'insert-child': {
+            return currentState
+        }
+        case 'remove-child': {
+            return currentState
+        }
+        case 'append-child': {
             return currentState
         }
     }

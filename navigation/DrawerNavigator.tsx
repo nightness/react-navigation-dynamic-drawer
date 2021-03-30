@@ -4,13 +4,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from '../navigation/DrawerContext'
 import { DrawerContent } from './DrawerContent'
 import { RoutingReducer } from './RoutingReducer'
-import { Screens } from './NavigationTypes'
+import { Paths } from './NavigationTypes'
 import { StyleProp, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
 
 interface Props {
-    initialScreens: Screens,
+    initialScreens: Paths,
     drawerStyle?: StyleProp<ViewStyle>
 }
 

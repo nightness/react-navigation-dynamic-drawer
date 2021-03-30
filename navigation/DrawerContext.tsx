@@ -1,16 +1,13 @@
-//import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
 import { DrawerNavigationState, NavigationHelpers, ParamListBase } from '@react-navigation/native'
-import React, { ComponentType, createContext, useContext, useEffect, useState, useReducer, ReducerAction } from 'react'
-//import { NavigationParams } from './DrawerParams'
-import { initialScreens } from './DefaultRoutes'
-import { Badges, Screens, ScreenConfig, Notifications } from './NavigationTypes'
+import React, { createContext, useState } from 'react'
+import { Badges, Paths, PathConfig } from './NavigationTypes'
 import { ReducerActionType } from './RoutingReducer'
 
 type ContextType = {
     badges: Badges,
     setBadge: (routeName: string, value: string) => void,
-    screens: Screens,
-    screensManager?: (action: ReducerActionType, index: number, screen?: ScreenConfig) => boolean,
+    screens: Paths,
+    screensManager?: (action: ReducerActionType, index: number, screen?: PathConfig) => boolean,
     navigation?: NavigationHelpers<any>,
     state?: DrawerNavigationState<ParamListBase>,
     screenIndex?: number,
@@ -19,14 +16,14 @@ type ContextType = {
 
 export const DrawerContext = createContext<ContextType>({
     badges: {},
-    screens: initialScreens,
+    screens: [],
     setBadge: (routeName: string, value: string) => undefined,
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
 
 interface Props {
     children: JSX.Element | JSX.Element[],
-    screens: Screens,
+    screens: Paths,
     screensDispatch: React.Dispatch<any>,
 }
 
@@ -48,7 +45,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const screensManager = (action: ReducerActionType, index: number, screen?: ScreenConfig) => {
+    const screensManager = (action: ReducerActionType, index: number, screen?: PathConfig) => {
         // If removing the current screen, go back in the history first, then remove
         if (action === 'remove' && index === screenIndex && navigation)
             navigation.goBack()

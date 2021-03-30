@@ -4,7 +4,7 @@ import Screen from '../components/Screen'
 import { Button } from 'react-native'
 import { DrawerContext } from '../navigation/DrawerContext'
 import { Dynamic } from './Dynamic'
-import { ScreenConfig } from '../navigation/NavigationTypes'
+import { PathConfig } from '../navigation/NavigationTypes'
 
 interface Props {
     navigation: DefaultRouterOptions
