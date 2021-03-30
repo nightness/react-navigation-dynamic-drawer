@@ -56,7 +56,7 @@ export default ({ style, navigation }: Props) => {
             <Button
                 title='Delete this Screen'
                 onPress={() => {
-                    if (screensManager && screenIndex) {
+                    if (screensManager && typeof screenIndex === 'number' && screenIndex >=0) {
                         screensManager('remove', screenIndex)
                     }
                 }}

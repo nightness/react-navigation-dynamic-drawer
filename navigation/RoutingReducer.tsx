@@ -27,12 +27,6 @@ export const RoutingReducer = (currentState: NavigationElements, action: Reducer
             return currentState
         }
         case 'remove': {
-            // requires only type and (index or name)
-            if (action.index === 0) {
-                console.log('test')
-                currentState.shift()
-                return [...currentState]
-            }
             if (typeof action.index === 'number' && action.index < currentState.length) {
                 currentState.splice(action.index, 1)
                 return [...currentState]
