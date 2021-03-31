@@ -14,11 +14,13 @@ export interface NavigationParams {
     focusedIconName?: string,
 }
 
-export type NavigationElement = {
+export interface NavigationElement {
     name: string,
     component: ComponentType<any>,
     initialParams: NavigationParams,
-    claims?: string[]
+    claims?: string[],
+    children?: NavigationElements
+    childrenCollapsed?: boolean
 }
 
 export type NavigationElements = NavigationElement[]

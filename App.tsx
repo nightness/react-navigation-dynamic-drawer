@@ -28,7 +28,18 @@ const initialPaths: NavigationElements = [
             iconGroup: 'ionicon',
             iconName: 'home',
             focusedIconName: 'home-outline'
-        }
+        },
+        children: [{
+            name: "Home Child",
+            component: Home,
+            initialParams: {
+                activeTintColor: '#123',
+                inactiveTintColor: '#000',
+                iconGroup: 'ionicon',
+                iconName: 'bug',
+                focusedIconName: 'bug-outline'
+            }
+        }]
     },
     {
         name: "Dashboard",
@@ -39,7 +50,18 @@ const initialPaths: NavigationElements = [
             iconGroup: 'ionicon',
             iconName: 'browsers',
             focusedIconName: 'browsers-outline'
-        }
+        },
+        children: [{
+            name: "Dashboard Child",
+            component: Dashboard,
+            initialParams: {
+                activeTintColor: '#123',
+                inactiveTintColor: '#000',
+                iconGroup: 'ionicon',
+                iconName: 'bug',
+                focusedIconName: 'bug-outline'
+            }
+        }]    
     },
     {
         name: "Playground",

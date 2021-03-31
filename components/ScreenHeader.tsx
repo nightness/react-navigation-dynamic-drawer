@@ -9,10 +9,7 @@ interface Props {
     navigation: DrawerNavigationProp<any>,
     title: string,
     hamburgerBadgeText?: string,
-    photoURL?: string | null,
-    hasDrawerNavigation?: boolean,
-    hasHome?: boolean,
-    hasBack?: boolean,
+    hasDrawerNavigation?: boolean
 }
 
 export default ({
@@ -52,11 +49,7 @@ export default ({
 
     const rightComponent = (
         <View style={{ flexDirection: 'row' }}>
-            <MaterialIcons
-                name="face"
-                size={iconSize}
-                onPress={() => navigation.goBack()}
-            />
+
         </View>
     )
 
