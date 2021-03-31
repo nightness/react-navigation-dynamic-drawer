@@ -61,7 +61,7 @@ const initialPaths: NavigationElements = [
                 iconName: 'bug',
                 focusedIconName: 'bug-outline'
             }
-        }]    
+        }]
     },
     {
         name: "Playground",
@@ -72,6 +72,39 @@ const initialPaths: NavigationElements = [
             iconGroup: 'ionicon',
             iconName: 'bug',
             focusedIconName: 'bug-outline'
-        }
+        },
+        children: [{
+            name: "Playground Child 1A",
+            component: Playground,
+            initialParams: {
+                activeTintColor: '#123',
+                inactiveTintColor: '#000',
+                iconGroup: 'ionicon',
+                iconName: 'bug',
+                focusedIconName: 'bug-outline'
+            },
+            children: [{
+                name: "Playground Parent 1A - Child 1",
+                component: Playground,
+                initialParams: {
+                    activeTintColor: '#123',
+                    inactiveTintColor: '#000',
+                    iconGroup: 'ionicon',
+                    iconName: 'bug',
+                    focusedIconName: 'bug-outline'
+                }
+            }]
+        },
+        {
+            name: "Playground Child 1B",
+            component: Playground,
+            initialParams: {
+                activeTintColor: '#123',
+                inactiveTintColor: '#000',
+                iconGroup: 'ionicon',
+                iconName: 'bug',
+                focusedIconName: 'bug-outline'
+            }
+        }]
     }
 ]
