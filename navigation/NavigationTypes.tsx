@@ -18,7 +18,6 @@ export interface NavigationElement {
     name: string,
     component: ComponentType<any>,
     initialParams: NavigationParams,
-    claims?: string[],
     children?: NavigationElements
     childrenCollapsed?: boolean
 }
