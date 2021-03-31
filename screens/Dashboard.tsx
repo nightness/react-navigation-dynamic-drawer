@@ -8,7 +8,6 @@ interface Props {
     navigation: DrawerNavigationProp<any>
 }
 
-// Playground
 export const Dashboard = ({ navigation }: Props) => {
     return(
         <Screen navigation = { navigation } title = "Dashboard" >
