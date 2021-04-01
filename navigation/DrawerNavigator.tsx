@@ -29,13 +29,13 @@ export default ({ initialScreens, ...restProps }: Props) => {
                 {screens.map((screen) => {                 
                     if (screen.depth > currentDepth) {
                         if (screen.depth !== (currentDepth + 1))
-                            throw new Error('depth step change more than 1');                            
+                            throw new Error('depth step change does not equal 1');                            
                         currentDepth++
                         parentStack.push(screen.name)
                     }
                     if (screen.depth < currentDepth) {
                         if (screen.depth !== (currentDepth - 1))
-                            throw new Error('depth step change more than 1');                            
+                            throw new Error('depth step change does not equal 1');                            
                         currentDepth--
                         parentStack.pop()
                     }
