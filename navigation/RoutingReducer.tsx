@@ -1,9 +1,7 @@
 import { NavigationElements, NavigationElement } from './NavigationTypes'
 
 export type ScreenActions =
-    'insert' | 'remove' | 'append' | 'hide' | 'show' |
-    'insert-child' | 'remove-child' | 'append-child' |
-    'collapse-children' | 'expand-children'
+    'insert' | 'remove' | 'append' | 'hide' | 'show' | 'collapse' | 'expand'
 
 export type ScreenAction = {
     type: ScreenActions,
@@ -42,19 +40,10 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
         case 'show': {
             return currentState
         }
-        case 'collapse-children': {
+        case 'collapse': {
             return currentState
         }
-        case 'expand-children': {
-            return currentState
-        }
-        case 'insert-child': {
-            return currentState
-        }
-        case 'remove-child': {
-            return currentState
-        }
-        case 'append-child': {
+        case 'expand': {
             return currentState
         }
     }
