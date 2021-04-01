@@ -27,8 +27,14 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
             return currentState
         }
         case 'remove': {
+            // Removes children too
+            let length = 1
+            for (let i = index + 1; i < currentState.length; i++) {
+                if (currentState[i].depth === currentState[index].depth) break
+                length++
+            }
             if (index != -1) {
-                currentState.splice(index, 1)
+                currentState.splice(index, length)
                 return [...currentState]
             }
             return currentState

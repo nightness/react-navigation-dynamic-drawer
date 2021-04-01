@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge } from 'react-native-elements'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { Header } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
@@ -38,10 +38,10 @@ export default ({
                     />
                     { hamburgerBadgeText ?
                         <Badge
-                            badgeStyle={{ marginLeft: -5, height: 20 }}
+                            badgeStyle={{ marginTop: 10, marginLeft: -5, height: 20 }}
                             value={hamburgerBadgeText}
-                        />
-                        : <></>
+                            onPress={navigation.openDrawer}
+                        /> : <></>
                     }
                 </>
             ) : (
