@@ -8,17 +8,16 @@ import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
 
-
 export default function App() {
     return (
         <NavigationContainer>
-            <DrawerNavigator initialScreens={initialPaths} />
+            <DrawerNavigator initialScreens={initialScreens} />
             <ModalPortal />
         </NavigationContainer>
     );
 }
 
-const initialPaths: NavigationElements = [
+const initialScreens: NavigationElements = [
     {
         label: 'Home',
         routeName: 'Home',

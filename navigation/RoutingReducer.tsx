@@ -1,7 +1,7 @@
 import { NavigationElements, NavigationElement } from './NavigationTypes'
 
 export type ScreenActions =
-    'insert' | 'remove' | 'append' | 'hide' | 'show' | 'collapse' | 'expand'
+    'insert' | 'remove' | 'append' | 'hide' | 'show' | 'collapse' | 'expand' | 'rename'
 
 export type ScreenAction = {
     type: ScreenActions,
@@ -61,5 +61,12 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
             }
             return currentState
         }
+        case 'rename': {
+            if (index != -1 && index < currentState.length && action.name) {
+                currentState[index].label = action.name
+                return {...currentState}
+            }
+            return currentState
+        }        
     }
 }
