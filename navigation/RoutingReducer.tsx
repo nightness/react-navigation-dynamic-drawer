@@ -1,18 +1,19 @@
 import { NavigationElements, NavigationElement } from './NavigationTypes'
 
-export type ReducerActionType =
-    'insert' | 'remove' | 'append' |
-    'insert-child' | 'remove-child' | 'append-child'
+export type ScreenActions =
+    'insert' | 'remove' | 'append' | 'hide' | 'show' |
+    'insert-child' | 'remove-child' | 'append-child' |
+    'collapse-children' | 'expand-children'
 
-export type ReducerAction = {
-    type: ReducerActionType,
+export type ScreenAction = {
+    type: ScreenActions,
     screen?: NavigationElement,
     index?: number,
     name?: string,
     children?: NavigationElements
 }
 
-export const RoutingReducer = (currentState: NavigationElements, action: ReducerAction) => {
+export const ScreensReducer = (currentState: NavigationElements, action: ScreenAction) => {
     const index = typeof action.index === 'number' && 
         action.index >= 0 && action.index < currentState.length ? action.index : -1
     switch (action.type) {
@@ -33,6 +34,18 @@ export const RoutingReducer = (currentState: NavigationElements, action: Reducer
                 currentState.splice(index, 1)
                 return [...currentState]
             }
+            return currentState
+        }
+        case 'hide': {
+            return currentState
+        }
+        case 'show': {
+            return currentState
+        }
+        case 'collapse-children': {
+            return currentState
+        }
+        case 'expand-children': {
             return currentState
         }
         case 'insert-child': {

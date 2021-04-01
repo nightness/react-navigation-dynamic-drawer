@@ -5,17 +5,22 @@ import {
 } from '@react-navigation/drawer'
 import { DrawerContext } from './DrawerContext'
 import DrawerContentItem from './DrawerContentItem'
-import { NavigationParams } from './NavigationTypes'
+import { NavigationElement, NavigationElements, NavigationParams } from './NavigationTypes'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Drawer } from 'react-native-paper'
+import { View } from 'react-native'
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-    const { badges, setDrawerContent } = useContext(DrawerContext)
+    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
         navigation.closeDrawer()
         navigation.navigate(screenName)
     }
+
+    let parentStack: NavigationElements = []
+    let currentDepth = 0
 
     useEffect(() => {
         setDrawerContent(navigation, state)
@@ -24,9 +29,23 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <DrawerContentScrollView bounces={false} {...props}>
-                {routeNames.map((routeName) => {
+                {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
+                    const { name, depth, isHidden } = screens[routeIndex]                    
+                    if (depth > currentDepth) {
+                        currentDepth++
+                        parentStack.push(screens[routeIndex - 1])
+                    }
+                    else if (depth < currentDepth) {
+                        currentDepth--
+                        parentStack.pop()
+                    }
+                    const isParentVisible = parentStack.filter((item) => !item).length > 0
+
+                    if (isHidden || (!isParentVisible && depth > 0))
+                        return (<View key={`${routeName}`}></View>)
+
                     return (
                         <DrawerContentItem
                             {...props}

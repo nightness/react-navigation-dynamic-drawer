@@ -29,17 +29,19 @@ const initialPaths: NavigationElements = [
             iconName: 'home',
             focusedIconName: 'home-outline'
         },
-        children: [{
-            name: "Home Child",
-            component: Home,
-            initialParams: {
-                activeTintColor: '#123',
-                inactiveTintColor: '#000',
-                iconGroup: 'ionicon',
-                iconName: 'bug',
-                focusedIconName: 'bug-outline'
-            }
-        }]
+        depth: 0
+    },
+    {
+        name: "Home Child",
+        component: Home,
+        initialParams: {
+            activeTintColor: '#123',
+            inactiveTintColor: '#000',
+            iconGroup: 'ionicon',
+            iconName: 'bug',
+            focusedIconName: 'bug-outline'
+        },
+        depth: 1
     },
     {
         name: "Dashboard",
@@ -51,18 +53,20 @@ const initialPaths: NavigationElements = [
             iconName: 'browsers',
             focusedIconName: 'browsers-outline'
         },
-        children: [{
-            name: "Dashboard Child",
-            component: Dashboard,
-            initialParams: {
-                activeTintColor: '#123',
-                inactiveTintColor: '#000',
-                iconGroup: 'ionicon',
-                iconName: 'bug',
-                focusedIconName: 'bug-outline'
-            }
-        }]
+        depth: 0
     },
+    {
+        name: "Dashboard Child",
+        component: Dashboard,
+        initialParams: {
+            activeTintColor: '#123',
+            inactiveTintColor: '#000',
+            iconGroup: 'ionicon',
+            iconName: 'bug',
+            focusedIconName: 'bug-outline'
+        },
+        depth: 1
+    },    
     {
         name: "Playground",
         component: Playground,
@@ -73,38 +77,43 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        children: [{
-            name: "Playground Child 1A",
-            component: Playground,
-            initialParams: {
-                activeTintColor: '#123',
-                inactiveTintColor: '#000',
-                iconGroup: 'ionicon',
-                iconName: 'bug',
-                focusedIconName: 'bug-outline'
-            },
-            children: [{
-                name: "Playground Parent 1A - Child 1",
-                component: Playground,
-                initialParams: {
-                    activeTintColor: '#123',
-                    inactiveTintColor: '#000',
-                    iconGroup: 'ionicon',
-                    iconName: 'bug',
-                    focusedIconName: 'bug-outline'
-                }
-            }]
+        isHidden: true,
+        depth: 0
+    },
+    {
+        name: "Playground Child 1A",
+        component: Playground,
+        initialParams: {
+            activeTintColor: '#123',
+            inactiveTintColor: '#000',
+            iconGroup: 'ionicon',
+            iconName: 'bug',
+            focusedIconName: 'bug-outline'
         },
-        {
-            name: "Playground Child 1B",
-            component: Playground,
-            initialParams: {
-                activeTintColor: '#123',
-                inactiveTintColor: '#000',
-                iconGroup: 'ionicon',
-                iconName: 'bug',
-                focusedIconName: 'bug-outline'
-            }
-        }]
+        depth: 1
+    },
+    {
+        name: "Playground Parent 1A - Child 1",
+        component: Playground,
+        initialParams: {
+            activeTintColor: '#123',
+            inactiveTintColor: '#000',
+            iconGroup: 'ionicon',
+            iconName: 'bug',
+            focusedIconName: 'bug-outline'
+        },
+        depth: 2
+    },    
+    {
+        name: "Playground Child 1B",
+        component: Playground,
+        initialParams: {
+            activeTintColor: '#123',
+            inactiveTintColor: '#000',
+            iconGroup: 'ionicon',
+            iconName: 'bug',
+            focusedIconName: 'bug-outline'
+        },
+        depth: 1
     }
 ]
