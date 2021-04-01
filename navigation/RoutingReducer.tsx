@@ -8,7 +8,6 @@ export type ScreenAction = {
     screen?: NavigationElement,
     index?: number,
     name?: string,
-    children?: NavigationElements
 }
 
 export const ScreensReducer = (currentState: NavigationElements, action: ScreenAction) => {
