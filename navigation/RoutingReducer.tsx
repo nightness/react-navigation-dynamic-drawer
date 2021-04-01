@@ -16,7 +16,7 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
         action.index >= 0 && action.index < currentState.length ? action.index : -1
     switch (action.type) {
         case 'insert': {
-            if (index != -1 && action.screen) {
+            if (index != -1 && index < currentState.length && action.screen) {
                 currentState.splice(index, 0, action.screen)
                 return [...currentState]
             }

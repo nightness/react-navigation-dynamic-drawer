@@ -29,7 +29,7 @@ const initialPaths: NavigationElements = [
             iconName: 'home',
             focusedIconName: 'home-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 0
     },
     {
@@ -42,7 +42,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 1
     },
     {
@@ -55,7 +55,7 @@ const initialPaths: NavigationElements = [
             iconName: 'browsers',
             focusedIconName: 'browsers-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 0
     },
     {
@@ -68,7 +68,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 1
     },    
     {
@@ -81,7 +81,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'collapsed',
+        visibility: 'collapsed',
         depth: 0
     },
     {
@@ -94,7 +94,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 1
     },
     {
@@ -107,7 +107,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 2
     },    
     {
@@ -120,7 +120,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        state: 'visible',
+        visibility: 'visible',
         depth: 1
     }
 ]

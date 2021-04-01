@@ -8,7 +8,7 @@ export type Badges = { [routeName: string] : {} }
 
 //export type Badges = { [routeName: string] : {} }
 
-export type ElementState = 'visible' | 'hidden' | 'collapsed'
+export type ElementVisibility = 'visible' | 'hidden' | 'collapsed'
 
 export interface NavigationParams {
     activeTintColor?: string,
@@ -23,7 +23,7 @@ export interface NavigationElement {
     component: ComponentType<any>,
     initialParams: NavigationParams,
     depth: number,
-    state: ElementState,
+    visibility: ElementVisibility,
 }
 
 export type NavigationElements = NavigationElement[]

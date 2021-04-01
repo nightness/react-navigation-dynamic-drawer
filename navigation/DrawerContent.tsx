@@ -32,7 +32,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { depth, state } = screens[routeIndex]                    
+                    const { depth, visibility: state } = screens[routeIndex]                    
                     if (depth > currentDepth) {
                         currentDepth++
                         parentStack.push(screens[routeIndex - 1])
@@ -41,10 +41,10 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                         currentDepth--
                         parentStack.pop()
                     }
-                    const theHidden = parentStack.filter((item) => item.state === 'hidden')
+                    const theHidden = parentStack.filter((item) => item.visibility === 'hidden')
                     const isVisible =
                         state !== 'hidden' &&
-                        parentStack[0]?.state !== 'collapsed' &&
+                        parentStack[0]?.visibility !== 'collapsed' &&
                         (depth === 0 || theHidden.length === 0)
                     
                     if (!isVisible)
