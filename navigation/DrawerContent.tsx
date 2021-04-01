@@ -5,9 +5,8 @@ import {
 } from '@react-navigation/drawer'
 import { DrawerContext } from './DrawerContext'
 import DrawerContentItem from './DrawerContentItem'
-import { NavigationElement, NavigationElements, NavigationParams } from './NavigationTypes'
+import { NavigationElements, NavigationParams } from './NavigationTypes'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Drawer } from 'react-native-paper'
 import { View } from 'react-native'
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
