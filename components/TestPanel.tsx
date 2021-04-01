@@ -52,7 +52,8 @@ export default ({ style, navigation }: Props) => {
                     iconGroup: 'antdesign',
                     iconName: 'paperclip',
                     focusedIconName: 'bug-outline'
-                }
+                },
+                depth: 0
             } as NavigationElement
         )
     }
