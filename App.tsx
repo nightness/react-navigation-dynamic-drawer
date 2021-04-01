@@ -77,7 +77,7 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        isHidden: true,
+        childrenCollapsed: true,
         depth: 0
     },
     {
