@@ -3,7 +3,7 @@ import { StyleProp, TextStyle, ViewStyle, View } from 'react-native'
 import { DrawerItem } from '@react-navigation/drawer'
 import { Icon } from 'react-native-elements'
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
-import { Text, Badge } from 'react-native-paper'
+import { Text, Badge } from 'react-native-elements'
 
 declare type Props = {
     /**
@@ -82,7 +82,7 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelText, badg
                 <View style={{ flex: 1, marginLeft: -15, flexDirection: 'row' }}>
                     <Text style={{ flex: 3, fontWeight: '600' }}>{labelText}</Text>
                     { badgeText ?
-                        <Badge size={22} visible={true}>{badgeText}</Badge>
+                        <Badge badgeStyle={{ height: 22 }}>{badgeText}</Badge>
                         : <></>
                     }
                 </View>

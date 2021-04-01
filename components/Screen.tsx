@@ -16,6 +16,7 @@ export default ({ children, style, navigation, title }: Props) => {
             <ScreenHeader
                 navigation={navigation}
                 title={title}
+                hamburgerBadgeText={'Hello'}
             />
             {children}
         </SafeAreaView>

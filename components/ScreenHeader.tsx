@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge } from 'react-native-paper'
+import { Badge } from 'react-native-elements'
 import { View, Text } from 'react-native'
 import { Header } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -37,7 +37,10 @@ export default ({
                         onPress={navigation.openDrawer}
                     />
                     { hamburgerBadgeText ?
-                        <Badge style={{ marginLeft: -5 }} size={16} visible={true}>{hamburgerBadgeText}</Badge>
+                        <Badge
+                            badgeStyle={{ marginLeft: -5, height: 20 }}
+                            value={hamburgerBadgeText}
+                        />
                         : <></>
                     }
                 </>
