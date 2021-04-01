@@ -42,7 +42,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                         parentStack.pop()
                     }
                     const theHidden = parentStack.filter((item) => item.isHidden)
-                    const isVisible = !isHidden && (depth === 0 || theHidden.length === 0)
+                    const isVisible = !isHidden && !parentStack[0]?.childrenCollapsed && (depth === 0 || theHidden.length === 0)
                     
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`}></View>)
