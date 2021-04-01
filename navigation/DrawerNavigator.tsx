@@ -26,7 +26,6 @@ export default ({ initialScreens, ...restProps }: Props) => {
             <Drawer.Navigator
                 {...restProps}
                 drawerContent={props => <DrawerContent {...props} />}>
-                {/* Root nodes */}                
                 {screens.map((screen) => {                 
                     if (screen.depth > currentDepth) {
                         if (screen.depth !== (currentDepth + 1))
