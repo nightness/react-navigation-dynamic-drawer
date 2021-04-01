@@ -32,7 +32,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { name, depth, isHidden } = screens[routeIndex]                    
+                    const { depth, isHidden } = screens[routeIndex]                    
                     if (depth > currentDepth) {
                         currentDepth++
                         parentStack.push(screens[routeIndex - 1])
