@@ -6,8 +6,6 @@ export type Notifications = {
 
 export type Badges = { [routeName: string] : {} }
 
-//export type Badges = { [routeName: string] : {} }
-
 export type ElementVisibility = 'visible' | 'hidden' | 'collapsed'
 
 export interface NavigationParams {

@@ -1,10 +1,10 @@
 import 'react-native-gesture-handler'
-import React, { useContext, useReducer } from 'react'
-import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer'
+import React, { useReducer } from 'react'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from '../navigation/DrawerContext'
 import { DrawerContent } from './DrawerContent'
 import { ScreensReducer } from './RoutingReducer'
-import { NavigationElement, NavigationElements } from './NavigationTypes'
+import { NavigationElements } from './NavigationTypes'
 import { StyleProp, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
