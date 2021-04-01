@@ -31,7 +31,7 @@ export default ({ initialScreens, ...restProps }: Props) => {
                         if (screen.depth !== (currentDepth + 1))
                             throw new Error('depth step change does not equal 1');                            
                         currentDepth++
-                        parentStack.push(screen.name)
+                        parentStack.push(screen.routeName)
                     }
                     if (screen.depth < currentDepth) {
                         if (screen.depth !== (currentDepth - 1))
@@ -41,7 +41,7 @@ export default ({ initialScreens, ...restProps }: Props) => {
                     }
                     return (
                         <Drawer.Screen
-                            name={screen.name}
+                            name={screen.routeName}
                             component={screen.component}
                             initialParams={screen.initialParams}
                             key={`${parentStack.join(String.fromCharCode(255))}`} />

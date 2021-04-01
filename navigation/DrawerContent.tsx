@@ -31,7 +31,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { depth, visibility: state } = screens[routeIndex]                    
+                    const { label, depth, isHidden } = screens[routeIndex]                    
                     if (depth > currentDepth) {
                         currentDepth++
                         parentStack.push(screens[routeIndex - 1])
@@ -40,10 +40,10 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                         currentDepth--
                         parentStack.pop()
                     }
-                    const theHidden = parentStack.filter((item) => item.visibility === 'hidden')
+                    const theHidden = parentStack.filter((item) => item.isHidden)
                     const isVisible =
-                        state !== 'hidden' &&
-                        parentStack[0]?.visibility !== 'collapsed' &&
+                        !isHidden &&
+                        !parentStack[0]?.isCollapsed &&
                         (depth === 0 || theHidden.length === 0)
                     
                     if (!isVisible)
@@ -54,7 +54,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                             {...props}
                             activeTintColor={params?.activeTintColor}
                             inactiveTintColor={params?.inactiveTintColor}
-                            labelText={routeName}
+                            labelText={label}
                             iconGroup={params?.iconGroup}
                             iconName={params?.iconName}
                             focusedIconName={params?.focusedIconName}

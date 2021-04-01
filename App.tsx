@@ -20,7 +20,8 @@ export default function App() {
 
 const initialPaths: NavigationElements = [
     {
-        name: "Home",
+        label: 'Home',
+        routeName: 'Home',
         component: Home,
         initialParams: {
             activeTintColor: '#5c3703',
@@ -29,11 +30,11 @@ const initialPaths: NavigationElements = [
             iconName: 'home',
             focusedIconName: 'home-outline'
         },
-        visibility: 'visible',
         depth: 0
     },
     {
-        name: "Home Child",
+        label: 'Home Child',
+        routeName: 'Home Child 1',
         component: Home,
         initialParams: {
             activeTintColor: '#123',
@@ -42,11 +43,11 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'visible',
         depth: 1
     },
     {
-        name: "Dashboard",
+        label: 'Dashboard',
+        routeName: 'Dashboard',
         component: Dashboard,
         initialParams: {
             activeTintColor: '#345',
@@ -55,11 +56,11 @@ const initialPaths: NavigationElements = [
             iconName: 'browsers',
             focusedIconName: 'browsers-outline'
         },
-        visibility: 'visible',
         depth: 0
     },
     {
-        name: "Dashboard Child",
+        label: 'Dashboard Child',
+        routeName: 'Dashboard Child 1',
         component: Dashboard,
         initialParams: {
             activeTintColor: '#123',
@@ -68,11 +69,11 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'visible',
         depth: 1
     },    
     {
-        name: "Playground",
+        label: 'Playground',
+        routeName: 'Playground',
         component: Playground,
         initialParams: {
             activeTintColor: '#123',
@@ -81,11 +82,12 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'collapsed',
+        //isCollapsed: true,
         depth: 0
     },
     {
-        name: "Playground Child 1A",
+        label: 'Playground Child 1A',
+        routeName: 'Playground Child 1A****',
         component: Playground,
         initialParams: {
             activeTintColor: '#123',
@@ -94,11 +96,11 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'visible',
         depth: 1
     },
     {
-        name: "Playground Parent 1A - Child 1",
+        label: 'Playground Parent 1A - Child 1',
+        routeName: 'Playground Parent 1A - Child 1',
         component: Playground,
         initialParams: {
             activeTintColor: '#123',
@@ -107,11 +109,11 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'visible',
         depth: 2
     },    
     {
-        name: "Playground Child 1B",
+        label: 'Playground Child 1B',
+        routeName: 'Playground Child 1B',
         component: Playground,
         initialParams: {
             activeTintColor: '#123',
@@ -120,7 +122,6 @@ const initialPaths: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
-        visibility: 'visible',
         depth: 1
     }
 ]

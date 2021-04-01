@@ -79,7 +79,7 @@ export default ({ style, navigation }: Props) => {
                     onPress={() => {
                         let found = false
                         screens.forEach((screen, index) => {
-                            if (screensManager && screen.name === 'Playground') {
+                            if (screensManager && screen.routeName === 'Playground') {
                                 found = true
                                 screensManager('remove', index)
                                 showMessageBox('Completed', 'Removed playground screen')
@@ -94,7 +94,7 @@ export default ({ style, navigation }: Props) => {
                     title='Delete this Screen'
                     onPress={() => {
                         if (screensManager && typeof screenIndex === 'number' && screenIndex >= 0) {
-                            const name = screens[screenIndex].name
+                            const name = screens[screenIndex].routeName
                             showMessageBox(
                                 'Confirmation',
                                 `Are you sure you want to remove ${name}?`,

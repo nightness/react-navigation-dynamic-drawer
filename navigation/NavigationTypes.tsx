@@ -6,8 +6,6 @@ export type Notifications = {
 
 export type Badges = { [routeName: string] : {} }
 
-export type ElementVisibility = 'visible' | 'hidden' | 'collapsed'
-
 export interface NavigationParams {
     activeTintColor?: string,
     inactiveTintColor?: string,
@@ -17,11 +15,13 @@ export interface NavigationParams {
 }
 
 export interface NavigationElement {
-    name: string,
+    label: string,
+    routeName: string,
     component: ComponentType<any>,
     initialParams: NavigationParams,
     depth: number,
-    visibility: ElementVisibility,
+    isHidden?: boolean,
+    isCollapsed?: boolean
 }
 
 export type NavigationElements = NavigationElement[]

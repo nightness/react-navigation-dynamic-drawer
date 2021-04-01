@@ -34,15 +34,31 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
             return currentState
         }
         case 'hide': {
+            if (index != -1 && index < currentState.length) {
+                currentState[index].isHidden = false
+                return {...currentState}
+            }
             return currentState
         }
         case 'show': {
+            if (index != -1 && index < currentState.length) {
+                currentState[index].isHidden = true
+                return {...currentState}
+            }
             return currentState
         }
         case 'collapse': {
+            if (index != -1 && index < currentState.length) {
+                currentState[index].isCollapsed = true
+                return {...currentState}
+            }
             return currentState
         }
         case 'expand': {
+            if (index != -1 && index < currentState.length) {
+                currentState[index].isCollapsed = false
+                return {...currentState}
+            }
             return currentState
         }
     }
