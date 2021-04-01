@@ -17,7 +17,7 @@ interface Props {
 export default ({ initialScreens, ...restProps }: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(ScreensReducer, initialScreens)
-    
+
     let parentStack: [string] = ['[root]']
     let currentDepth = -1
 
@@ -29,10 +29,14 @@ export default ({ initialScreens, ...restProps }: Props) => {
                 {/* Root nodes */}                
                 {screens.map((screen) => {                 
                     if (screen.depth > currentDepth) {
+                        if (screen.depth !== (currentDepth + 1))
+                            throw new Error('depth step change more than 1');                            
                         currentDepth++
                         parentStack.push(screen.name)
                     }
                     if (screen.depth < currentDepth) {
+                        if (screen.depth !== (currentDepth - 1))
+                            throw new Error('depth step change more than 1');                            
                         currentDepth--
                         parentStack.pop()
                     }
