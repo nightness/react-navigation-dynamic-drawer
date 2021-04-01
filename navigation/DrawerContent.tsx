@@ -41,10 +41,11 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                         currentDepth--
                         parentStack.pop()
                     }
-                    const isParentVisible = parentStack.filter((item) => !item).length > 0
-
-                    if (isHidden || (!isParentVisible && depth > 0))
-                        return (<View key={`${routeName}`}></View>)
+                    const theHidden = parentStack.filter((item) => item.isHidden)
+                    const isParentVisible = depth === 0 || theHidden.length === 0
+                    
+                    if (isHidden || !isParentVisible)
+                        return (<View key={`${routeName}-${Math.random()}`}></View>)
 
                     return (
                         <DrawerContentItem
@@ -58,7 +59,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                             onPress={() => navigateTo(routeName)}
                             key={`route-${routeName}-${Math.random()}`}
                             badgeText={badges[routeName] as string}
-                            style={{ marginLeft: false ? 25 : 0 }}  // ToDo
+                            style={{ marginLeft: (15 * depth) }}  // ToDo
                         />
                     )
                 })}
