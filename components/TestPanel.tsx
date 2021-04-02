@@ -12,19 +12,23 @@ interface Props {
     navigation: DrawerNavigationProp<any>,
 }
 
-interface MessageBoxState {
+interface BasicState {
     title: string,
     message: string,
     askYesNo: boolean,
+}
+
+interface MessageBoxState extends BasicState {
     confirm?: () => void
 }
 
-interface InputBoxState extends MessageBoxState {
+interface InputBoxState extends BasicState {
     value: string
+    confirm?: (text: string) => void
 }
 
 export default ({ style, navigation }: Props) => {
-    const { screens, screenIndex, screensManager } = useContext(DrawerContext)
+    const { screens, screenIndex, screensManager, setHamburgerBadge } = useContext(DrawerContext)
     const [showInputBoxModal, setShowInputBoxModal] = useState(false)
     const [inputBoxState, setInputBoxState] = useState<InputBoxState>({
         title: '',
@@ -63,7 +67,7 @@ export default ({ style, navigation }: Props) => {
         setShowMessageBoxModal(true)
     }
 
-    const showInputBox = (title: string, message: string, value: string, askYesNo: boolean = false, confirm: () => void) => {
+    const showInputBox = (title: string, message: string, value: string, askYesNo: boolean = false, confirm: (text: string) => void) => {
         setInputBoxState({ title, message, askYesNo, value, confirm })
         setShowInputBoxModal(true)
     }
@@ -89,8 +93,7 @@ export default ({ style, navigation }: Props) => {
                     setInputBoxState({...inputBoxState})
                 }}
                 confirm={() => {
-                    console.log(inputBoxState.value)
-                    inputBoxState.confirm?.()
+                    inputBoxState.confirm?.(inputBoxState.value)
                     setShowInputBoxModal(false)
                 }}
                 dismiss={() => setShowInputBoxModal(false)}
@@ -166,6 +169,16 @@ export default ({ style, navigation }: Props) => {
                         onPress={() => {
                             showInputBox('Title', 'Message', '', false, () => {
 
+                            })
+                        }}
+                    />
+                </View>
+                <View style={{ margin: 5 }}>
+                    <Button
+                        title='Set Hamburger Badge'
+                        onPress={() => {
+                            showInputBox('Set Hamburger Badge', 'Text', '', false, (text) => {
+                                setHamburgerBadge?.(text)
                             })
                         }}
                     />

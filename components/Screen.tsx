@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ScreenHeader from './ScreenHeader'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
+import { DrawerContext } from '../navigation/DrawerContext'
 
 interface Props {
     children: JSX.Element | JSX.Element[],
@@ -10,14 +11,11 @@ interface Props {
     title: string,
 }
 
-export default ({ children, style, navigation, title }: Props) => {
+export default ({ children, style, ...restProps }: Props) => {
+    const { hamburgerBadge } = useContext(DrawerContext)
     return (
         <SafeAreaView style={[{ flex: 1 }, style]}>
-            <ScreenHeader
-                navigation={navigation}
-                title={title}
-                hamburgerBadgeText={'Hello'}
-            />
+            <ScreenHeader hamburgerBadgeText={hamburgerBadge} {...restProps}/>
             {children}
         </SafeAreaView>
     )

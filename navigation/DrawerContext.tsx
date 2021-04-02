@@ -8,6 +8,8 @@ type ContextType = {
     setBadge: (routeName: string, value: string) => void,
     screens: NavigationElements,
     screensManager?: (action: ScreenActions, index: number, screen?: NavigationElement) => boolean,
+    hamburgerBadge?: string,
+    setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
     navigation?: NavigationHelpers<any>,
     state?: DrawerNavigationState<ParamListBase>,
     screenIndex?: number,
@@ -29,6 +31,7 @@ interface Props {
 
 export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
     const [badges, setBadges] = useState<Badges>({})
+    const [hamburgerBadge, setHamburgerBadge] = useState<string>()
     const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
     const [state, setState] = useState<DrawerNavigationState<ParamListBase>>()
     const screenIndex = state ? state.index : -1
@@ -63,6 +66,8 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 screenIndex,
                 screens,
                 screensManager,
+                hamburgerBadge,
+                setHamburgerBadge,
                 setDrawerContent
             }}
         >
