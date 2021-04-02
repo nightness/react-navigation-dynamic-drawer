@@ -9,7 +9,7 @@ interface Props {
     screensDispatch: React.Dispatch<any>
 }
 
-interface ScreenManagerType {
+interface ScreenManagerProps {
     getIndex: (screenPath: [number]) => number | undefined,
     getScreenPath: (index: number) => [number] | undefined,
     addChild: (screenPath: [number], index: number, screenConfig: NavigationElement) => boolean,
@@ -20,7 +20,7 @@ type ContextType = {
     badges: Badges,
     setBadge: (routeName: string, value: string) => void,
     screens: NavigationElements,
-    ScreenManager?: ScreenManagerType,
+    ScreenManager?: ScreenManagerProps,
     hamburgerBadge?: string,
     setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
     navigation?: NavigationHelpers<any>,
@@ -55,7 +55,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const ScreenManager: ScreenManagerType = {
+    const ScreenManager: ScreenManagerProps = {
         reducer: (type: ScreenActions, index: number, screen?: NavigationElement) => {
             // If removing the current screen, go back in the history first, then remove
             if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
@@ -68,7 +68,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             return true
         },
         getIndex: (screenPath: [number]) => {
-            
+
             return undefined
         },
         getScreenPath: (index: number) => {
