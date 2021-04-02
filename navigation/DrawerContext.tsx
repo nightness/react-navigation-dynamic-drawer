@@ -85,7 +85,6 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                     parentStack.pop()
                 }
             }
-            console.log()
             return undefined
         }
     }

@@ -1,6 +1,6 @@
 # ****EARLY DOCUMENTATION****
 # react-navigation-dynamic-drawer
-Dynamically add or remove screens to/from a react-navigation/drawer. I'm working on developing a robust drawer navigator.
+Dynamically add or remove screens to/from a react-navigation/drawer. I'm working on developing a robust react-navigation Drawer navigator.
 
 # Setup
 
