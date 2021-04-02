@@ -6,11 +6,11 @@ import { ScreenActions } from './RoutingReducer'
 interface Props {
     children: JSX.Element | JSX.Element[],
     screens: NavigationElements,
-    screensDispatch: React.Dispatch<any>,
+    screensDispatch: React.Dispatch<any>
 }
 
 interface ScreenManagerType {
-    getIndex: (screenPath: [number]) => number,
+    getIndex: (screenPath: [number]) => number | undefined,
     getScreenPath: (index: number) => [number] | undefined,
     addChild: (screenPath: [number], index: number, screenConfig: NavigationElement) => boolean,
     reducer: (type: ScreenActions, index: number, screen?: NavigationElement) => boolean
@@ -66,6 +66,10 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         addChild: (screenPath: [number], arg1: number, screenConfig: NavigationElement) => {
 
             return true
+        },
+        getIndex: (screenPath: [number]) => {
+            
+            return undefined
         },
         getScreenPath: (index: number) => {
             let parentStack: NavigationElements = []
