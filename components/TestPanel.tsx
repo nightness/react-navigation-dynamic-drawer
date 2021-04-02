@@ -54,7 +54,7 @@ export default ({ style, navigation }: Props) => {
                     focusedIconName: 'bug-outline'
                 },
                 depth: 0
-            } as NavigationElement
+            }
         )
     }
 
