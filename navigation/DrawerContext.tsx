@@ -10,6 +10,9 @@ interface Props {
 }
 
 interface ScreenManagerType {
+    getIndex: (screenPath: [number]) => number,
+    getScreenPath: (index: number) => [number] | undefined,
+    addChild: (screenPath: [number], index: number, screenConfig: NavigationElement) => boolean,
     reducer: (type: ScreenActions, index: number, screen?: NavigationElement) => boolean
 }
 
@@ -39,9 +42,9 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
     const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
     const [state, setState] = useState<DrawerNavigationState<ParamListBase>>()
     const screenIndex = state ? state.index : -1
-    
+
     const setBadge = (routeName: string, value: string): void => {
-        let newState = {...badges}
+        let newState = { ...badges }
         newState[routeName] = value
         setBadges(newState)
     }
@@ -59,6 +62,27 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 navigation.goBack()
             screensDispatch({ type, index, screen })
             return true
+        },
+        addChild: (screenPath: [number], arg1: number, screenConfig: NavigationElement) => {
+
+            return true
+        },
+        getScreenPath: (index: number) => {
+            let parentStack: NavigationElements = []
+            let currentDepth = 0
+            for (let index = 0; index < screens.length; index++) {
+                const { label, depth, isHidden } = screens[index]
+                if (depth > currentDepth) {
+                    currentDepth++
+                    parentStack.push(screens[index - 1])
+                }
+                else if (depth < currentDepth) {
+                    currentDepth--
+                    parentStack.pop()
+                }
+            }
+            console.log()
+            return undefined
         }
     }
 
