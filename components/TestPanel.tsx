@@ -5,7 +5,6 @@ import { DrawerContext } from '../navigation/DrawerContext'
 import { Dynamic } from '../screens/Dynamic'
 import { MessageBoxModal } from '../modals/MessageBoxModal'
 import { InputBoxModal } from '../modals/InputBoxModal'
-import { NavigationElement } from '../navigation/NavigationTypes'
 
 interface Props {
     style?: object,
@@ -28,7 +27,7 @@ interface InputBoxState extends BasicState {
 }
 
 export default ({ style, navigation }: Props) => {
-    const { screens, screenIndex, screensManager, setHamburgerBadge } = useContext(DrawerContext)
+    const { screens, screenIndex, ScreenManager, setHamburgerBadge } = useContext(DrawerContext)
     const [showInputBoxModal, setShowInputBoxModal] = useState(false)
     const [inputBoxState, setInputBoxState] = useState<InputBoxState>({
         title: '',
@@ -90,7 +89,7 @@ export default ({ style, navigation }: Props) => {
                 askYesNo={inputBoxState.askYesNo}
                 onChangeText={(text) => {
                     inputBoxState.value = text
-                    setInputBoxState({...inputBoxState})
+                    setInputBoxState({ ...inputBoxState })
                 }}
                 confirm={() => {
                     inputBoxState.confirm?.(inputBoxState.value)
@@ -124,9 +123,9 @@ export default ({ style, navigation }: Props) => {
                         onPress={() => {
                             let found = false
                             screens.forEach((screen, index) => {
-                                if (screensManager && screen.routeName === 'Playground') {
+                                if (ScreenManager?.reducer && screen.routeName === 'Playground') {
                                     found = true
-                                    screensManager('remove', index)
+                                    ScreenManager.reducer('remove', index)
                                     showMessageBox('Completed', 'Removed playground screen')
                                 }
                             })
@@ -140,12 +139,12 @@ export default ({ style, navigation }: Props) => {
                     <Button
                         title='Delete this Screen'
                         onPress={() => {
-                            if (screensManager && typeof screenIndex === 'number' && screenIndex >= 0) {
+                            if (ScreenManager?.reducer && typeof screenIndex === 'number' && screenIndex >= 0) {
                                 const name = screens[screenIndex].routeName
                                 showMessageBox(
                                     'Confirmation',
                                     `Are you sure you want to remove ${name}?`,
-                                    true, () => screensManager('remove', screenIndex)
+                                    true, () => ScreenManager.reducer('remove', screenIndex)
                                 )
                             }
                         }}
@@ -156,8 +155,8 @@ export default ({ style, navigation }: Props) => {
                         title='Add a Dynamic'
                         onPress={() => {
                             const screenConfig = getScreenConfig()
-                            if (screensManager) {
-                                screensManager('append', 0, screenConfig)
+                            if (ScreenManager?.reducer) {
+                                ScreenManager.reducer('append', 0, screenConfig)
                                 showMessageBox('Completed', `Added a new dynamic screen called '${screenConfig.label}' with a routeName of '${screenConfig.routeName}'`)
                             }
                         }}
@@ -165,11 +164,15 @@ export default ({ style, navigation }: Props) => {
                 </View>
                 <View style={{ margin: 5 }}>
                     <Button
-                        title='Show InputBox'
+                        title='Add a Dynamic child to this screen'
                         onPress={() => {
-                            showInputBox('Title', 'Message', '', false, () => {
-
-                            })
+                            const screenConfig = getScreenConfig()
+                            if (ScreenManager?.reducer) {
+                                //const screenPath = ScreenManager.getScreenPath()
+                                //ScreenManager.addChild(screenPath, -1, screenConfig)
+                                //showMessageBox('Completed', `Added a new dynamic screen called '${screenConfig.label}' with a routeName of '${screenConfig.routeName}'`)
+                                showMessageBox('ToDo', 'ToDo')
+                            }
                         }}
                     />
                 </View>

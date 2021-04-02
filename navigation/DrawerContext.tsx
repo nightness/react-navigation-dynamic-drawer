@@ -3,11 +3,21 @@ import React, { createContext, useState } from 'react'
 import { Badges, NavigationElements, NavigationElement } from './NavigationTypes'
 import { ScreenActions } from './RoutingReducer'
 
+interface Props {
+    children: JSX.Element | JSX.Element[],
+    screens: NavigationElements,
+    screensDispatch: React.Dispatch<any>,
+}
+
+interface ScreenManagerType {
+    reducer: (type: ScreenActions, index: number, screen?: NavigationElement) => boolean
+}
+
 type ContextType = {
     badges: Badges,
     setBadge: (routeName: string, value: string) => void,
     screens: NavigationElements,
-    screensManager?: (action: ScreenActions, index: number, screen?: NavigationElement) => boolean,
+    ScreenManager?: ScreenManagerType,
     hamburgerBadge?: string,
     setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
     navigation?: NavigationHelpers<any>,
@@ -22,12 +32,6 @@ export const DrawerContext = createContext<ContextType>({
     setBadge: (routeName: string, value: string) => undefined,
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
-
-interface Props {
-    children: JSX.Element | JSX.Element[],
-    screens: NavigationElements,
-    screensDispatch: React.Dispatch<any>,
-}
 
 export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
     const [badges, setBadges] = useState<Badges>({})
@@ -48,12 +52,14 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const screensManager = (type: ScreenActions, index: number, screen?: NavigationElement) => {
-        // If removing the current screen, go back in the history first, then remove
-        if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
-            navigation.goBack()
-        screensDispatch({ type, index, screen })
-        return true
+    const ScreenManager: ScreenManagerType = {
+        reducer: (type: ScreenActions, index: number, screen?: NavigationElement) => {
+            // If removing the current screen, go back in the history first, then remove
+            if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
+                navigation.goBack()
+            screensDispatch({ type, index, screen })
+            return true
+        }
     }
 
     return (
@@ -65,7 +71,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 state,
                 screenIndex,
                 screens,
-                screensManager,
+                ScreenManager,
                 hamburgerBadge,
                 setHamburgerBadge,
                 setDrawerContent
