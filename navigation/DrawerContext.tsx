@@ -69,19 +69,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             return false
         },
         getIndex: (screenPath: [number]) => {
-            let parentStack: NavigationElements = []
-            let currentDepth = 0
-            for (let index = 0; index < screens.length; index++) {
-                const { label, depth, isHidden } = screens[index]
-                if (depth > currentDepth) {
-                    currentDepth++
-                    parentStack.push(screens[index - 1])
-                }
-                else if (depth < currentDepth) {
-                    currentDepth--
-                    parentStack.pop()
-                }
-            }
+
             return undefined
         },
         getScreenPath: (searchIndex: number) => {
