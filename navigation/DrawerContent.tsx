@@ -49,10 +49,6 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`}></View>)
 
-                    const path = ScreenManager?.getScreenPath(routeIndex)
-                    const index = Array.isArray(path) ? ScreenManager?.getIndex(path) : -1
-                    console.log(path)
-                    console.log(index)
                     return (
                         <DrawerContentItem
                             {...props}
