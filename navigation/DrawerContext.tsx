@@ -36,6 +36,8 @@ export const DrawerContext = createContext<ContextType>({
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
 
+const equals = (a:[number], b:[number]) => a.length === b.length && a.every((v, i) => v === b[i])
+
 export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
     const [badges, setBadges] = useState<Badges>({})
     const [hamburgerBadge, setHamburgerBadge] = useState<string>()
@@ -68,21 +70,42 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             if (!parentIndex) throw new Error(`addChild: Parent index not found`)
             return false
         },
-        getIndex: (screenPath: [number]) => {            
-            
-            return undefined
+        getIndex: (screenPath: [number]) => {
+            let path: [number] = [0]
+            let currentDepth = 0
+
+            if (equals(screenPath, [0])) return 0
+            for (let index = 1; index <= screens.length; index++) {
+                // Check for a depth change
+                const { depth } = screens[index]
+                if (depth > currentDepth) {
+                    currentDepth++
+                    path.push(-1)
+                }
+                if (depth < currentDepth) {
+                    currentDepth--
+                    path.pop()
+                }
+
+                // Increment the path's index for this depth
+                path[currentDepth]++
+
+                if (equals(screenPath, path)) {
+                    return index
+                }
+            }
+            return -1
         },
         getScreenPath: (searchIndex: number) => {
             let path: [number] = [0]
             let currentDepth = 0
-            
+
             for (let index = 1; index <= searchIndex; index++) {
                 // Check for a depth change
                 const { depth } = screens[index]
                 if (depth > currentDepth) {
                     currentDepth++
                     path.push(-1)
-                    continue
                 }
                 if (depth < currentDepth) {
                     currentDepth--
