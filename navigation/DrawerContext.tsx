@@ -68,8 +68,8 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             if (!parentIndex) throw new Error(`addChild: Parent index not found`)
             return false
         },
-        getIndex: (screenPath: [number]) => {
-
+        getIndex: (screenPath: [number]) => {            
+            
             return undefined
         },
         getScreenPath: (searchIndex: number) => {
@@ -78,12 +78,13 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             
             for (let index = 1; index <= searchIndex; index++) {
                 // Check for a depth change
-                const { label, depth, isHidden } = screens[index]
+                const { depth } = screens[index]
                 if (depth > currentDepth) {
                     currentDepth++
                     path.push(-1)
+                    continue
                 }
-                else if (depth < currentDepth) {
+                if (depth < currentDepth) {
                     currentDepth--
                     path.pop()
                 }
