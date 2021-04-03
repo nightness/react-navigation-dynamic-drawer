@@ -2,19 +2,32 @@ import * as React from 'react';
 // @ts-ignore
 import { ModalPortal } from 'react-native-modals'
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
+import { ThemeProvider } from 'react-native-elements'
 import DrawerNavigator from './navigation/DrawerNavigator'
 import { NavigationElements } from './navigation/NavigationTypes'
 import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
 
+const sharedTheme = {
+
+}
+
+const darkTheme = {
+    View: {
+        style: { background: 'red' }
+    },
+}
+
 export default function App() {
     return (
-        <NavigationContainer>
-            <DrawerNavigator initialScreens={initialScreens} />
-            <ModalPortal />
-        </NavigationContainer>
-    );
+        <ThemeProvider theme={darkTheme}>
+            <NavigationContainer>
+                <DrawerNavigator initialScreens={initialScreens} />
+                <ModalPortal />
+            </NavigationContainer>
+        </ThemeProvider>
+    )
 }
 
 const initialScreens: NavigationElements = [
@@ -69,7 +82,7 @@ const initialScreens: NavigationElements = [
             focusedIconName: 'bug-outline'
         },
         depth: 1
-    },    
+    },
     {
         label: 'Playground',
         routeName: 'Playground',
@@ -109,7 +122,7 @@ const initialScreens: NavigationElements = [
             focusedIconName: 'bug-outline'
         },
         depth: 2
-    },    
+    },
     {
         label: 'Playground Child 1B',
         routeName: 'Playground Child 1B',

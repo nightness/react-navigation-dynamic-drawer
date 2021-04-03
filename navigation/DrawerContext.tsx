@@ -63,15 +63,12 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             screensDispatch({ type, index, screen })
             return true
         },
-        addChild: (screenPath: [number], arg1: number, screenConfig: NavigationElement) => {
-
-            return true
+        addChild: (parentScreenPath: [number], index: number, screenConfig: NavigationElement) => {
+            const parentIndex = ScreenManager.getIndex(parentScreenPath)
+            if (!parentIndex) throw new Error(`addChild: Parent index not found`)
+            return false
         },
         getIndex: (screenPath: [number]) => {
-
-            return undefined
-        },
-        getScreenPath: (index: number) => {
             let parentStack: NavigationElements = []
             let currentDepth = 0
             for (let index = 0; index < screens.length; index++) {
@@ -86,6 +83,28 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 }
             }
             return undefined
+        },
+        getScreenPath: (searchIndex: number) => {
+            let path: [number] = [0]
+            let currentDepth = 0
+            
+            for (let index = 1; index <= searchIndex; index++) {
+                // Check for a depth change
+                const { label, depth, isHidden } = screens[index]
+                if (depth > currentDepth) {
+                    currentDepth++
+                    path.push(-1)
+                }
+                else if (depth < currentDepth) {
+                    currentDepth--
+                    path.pop()
+                }
+
+                // Increment the path's index for this depth
+                path[currentDepth]++
+            }
+
+            return path
         }
     }
 

@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
+    const { badges, screens, setDrawerContent, ScreenManager } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
@@ -48,7 +48,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                     
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`}></View>)
-
+                    console.log(ScreenManager?.getScreenPath(routeIndex))
                     return (
                         <DrawerContentItem
                             {...props}
