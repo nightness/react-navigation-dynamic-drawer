@@ -28,6 +28,7 @@ interface ScreenManagerProps {
     expand: (node: number | [number]) => void,
     hide: (node: number | [number]) => void,
     show: (node: number | [number]) => void,
+    rename: (node: number | [number], label: string) => void
 }
 
 type ContextType = {
@@ -71,7 +72,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         setState(state)
     }
 
-    const nodeHandler = (type: ScreenActions, node: number | [number]) => {
+    const nodeHandler = (type: ScreenActions, node: number | [number], name?: string) => {
         if (Array.isArray(node)) {
             const index = ScreenManager.getScreenIndex(node)
             if (!index)
@@ -79,7 +80,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             node = index
         }
         // At this point node is for sure an index
-        screensDispatch({ type, index: node })
+        screensDispatch({ type, index: node, name })
     }
 
     const reducer = (type: ScreenActions, index?: number, screen?: NavigationElement) => {
@@ -104,6 +105,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         expand: (node: number | [number]) => nodeHandler('expand', node),
         hide: (node: number | [number]) => nodeHandler('hide', node),
         show: (node: number | [number]) => nodeHandler('show', node),
+        rename: (node: number | [number], label: string) => nodeHandler('rename', node, label),
         addChild: (parentScreenPath: [number], screenConfig: NavigationElement) => {
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
             if (!parentIndex) throw new Error(`addChild: Parent index not found`)
