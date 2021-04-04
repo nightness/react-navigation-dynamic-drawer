@@ -125,7 +125,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         },
         insertChild: (parentScreenPath: [number], insertChildIndex: number, screenConfig: NavigationElement) => {
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
-            if (!parentIndex) throw new Error(`insertChild: Parent index not found`)
+            if (parentIndex === undefined) throw new Error(`insertChild: Parent index not found`)
             const childDepth = screens[parentIndex].depth + 1
             var childIndex = -1
             for (let index = parentIndex + 1; index <= screens.length; index++) {
@@ -143,7 +143,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         },
         removeChild: (child: [number]) => {
             const index = ScreenManager.getScreenIndex(child)
-            if (!index)
+            if (index === undefined)
                 throw new Error('removeChild: invalid screen path')
             ScreenManager.removeScreen(index)
         },
