@@ -123,9 +123,9 @@ export default ({ style, navigation }: Props) => {
                         onPress={() => {
                             let found = false
                             screens.forEach((screen, index) => {
-                                if (ScreenManager?.reducer && screen.routeName === 'Playground') {
+                                if (ScreenManager?.removeScreen && screen.routeName === 'Playground') {
                                     found = true
-                                    ScreenManager.reducer('remove', index)
+                                    ScreenManager.removeScreen(index)
                                     showMessageBox('Completed', 'Removed playground screen')
                                 }
                             })
@@ -139,12 +139,12 @@ export default ({ style, navigation }: Props) => {
                     <Button
                         title='Delete this Screen'
                         onPress={() => {
-                            if (ScreenManager?.reducer && typeof screenIndex === 'number' && screenIndex >= 0) {
+                            if (ScreenManager?.removeScreen && typeof screenIndex === 'number' && screenIndex >= 0) {
                                 const name = screens[screenIndex].routeName
                                 showMessageBox(
                                     'Confirmation',
                                     `Are you sure you want to remove ${name}?`,
-                                    true, () => ScreenManager.reducer('remove', screenIndex)
+                                    true, () => ScreenManager.removeScreen(screenIndex)
                                 )
                             }
                         }}
@@ -155,8 +155,8 @@ export default ({ style, navigation }: Props) => {
                         title='Add a Dynamic'
                         onPress={() => {
                             const screenConfig = getScreenConfig()
-                            if (ScreenManager?.reducer) {
-                                ScreenManager.reducer('append', 0, screenConfig)
+                            if (ScreenManager?.appendScreen) {
+                                ScreenManager.appendScreen(screenConfig)
                                 showMessageBox('Completed', `Added a new dynamic screen called '${screenConfig.label}' with a routeName of '${screenConfig.routeName}'`)
                             }
                         }}
@@ -167,12 +167,7 @@ export default ({ style, navigation }: Props) => {
                         title='Add a Dynamic child to this screen'
                         onPress={() => {
                             const screenConfig = getScreenConfig()
-                            if (ScreenManager?.reducer) {
-                                //const screenPath = ScreenManager.getScreenPath()
-                                //ScreenManager.addChild(screenPath, -1, screenConfig)
-                                //showMessageBox('Completed', `Added a new dynamic screen called '${screenConfig.label}' with a routeName of '${screenConfig.routeName}'`)
-                                showMessageBox('ToDo', 'ToDo')
-                            }
+                            showMessageBox('ToDo', 'ToDo')
                         }}
                     />
                 </View>
