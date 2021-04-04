@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
     DrawerContentScrollView,
     DrawerContentComponentProps,
@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-    const { badges, screens, setDrawerContent, ScreenManager } = useContext(DrawerContext)
+    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
@@ -18,7 +18,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
         navigation.navigate(screenName)
     }
 
-    let parentStack: NavigationElements = []
+    let elementStack: NavigationElements = []
     let currentDepth = 0
 
     useEffect(() => {
@@ -34,16 +34,16 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                     const { label, depth, isHidden } = screens[routeIndex]                    
                     if (depth > currentDepth) {
                         currentDepth++
-                        parentStack.push(screens[routeIndex - 1])
+                        elementStack.push(screens[routeIndex - 1])
                     }
                     else if (depth < currentDepth) {
                         currentDepth--
-                        parentStack.pop()
+                        elementStack.pop()
                     }
-                    const theHidden = parentStack.filter((item) => item.isHidden)
+                    const theHidden = elementStack.filter((item) => item.isHidden)
                     const isVisible =
                         !isHidden &&
-                        !parentStack[0]?.isCollapsed &&
+                        !elementStack[0]?.isCollapsed &&
                         (depth === 0 || theHidden.length === 0)
                     
                     if (!isVisible)
