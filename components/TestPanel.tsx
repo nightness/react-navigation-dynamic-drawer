@@ -167,7 +167,12 @@ export default ({ style, navigation }: Props) => {
                         title='Add a Dynamic child to this screen'
                         onPress={() => {
                             const screenConfig = getScreenConfig()
-                            showMessageBox('ToDo', 'ToDo')
+                            if (ScreenManager?.addChild && typeof screenIndex === 'number' && screenIndex >= 0) {
+                                const path = ScreenManager.getScreenPath(screenIndex)
+                                if (!path) throw new Error('Path Not Found')
+                                ScreenManager.addChild(path, screenConfig)
+                                showMessageBox('Completed', `Added a new dynamic child of this screen called '${screenConfig.label}' with a routeName of '${screenConfig.routeName}'`)
+                            }
                         }}
                     />
                 </View>

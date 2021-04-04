@@ -26,18 +26,17 @@ export default ({ initialScreens, ...restProps }: Props) => {
             <Drawer.Navigator
                 {...restProps}
                 drawerContent={props => <DrawerContent {...props} />}>
-                {screens.map((screen) => {                 
+                {screens.map((screen) => {
+                    const depthDelta = currentDepth - screen.depth
                     if (screen.depth > currentDepth) {
-                        if (screen.depth !== (currentDepth + 1))
-                            throw new Error('depth step change does not equal 1');                            
                         currentDepth++
                         parentStack.push(screen.routeName)
                     }
                     if (screen.depth < currentDepth) {
-                        if (screen.depth !== (currentDepth - 1))
-                            throw new Error('depth step change does not equal 1');                            
-                        currentDepth--
-                        parentStack.pop()
+                        for (let i = depthDelta; i < 0; i++) {
+                            currentDepth--
+                            parentStack.pop()
+                        }
                     }
                     return (
                         <Drawer.Screen
