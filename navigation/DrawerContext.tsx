@@ -75,7 +75,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
     const nodeHandler = (type: ScreenActions, node: number | [number], name?: string) => {
         if (Array.isArray(node)) {
             const index = ScreenManager.getScreenIndex(node)
-            if (!index)
+            if (index === undefined)
                 throw new Error(`${type}: path is invalid`)
             node = index
         }
