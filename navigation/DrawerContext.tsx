@@ -50,7 +50,7 @@ export const DrawerContext = createContext<ContextType>({
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
 
-const equals = (a:[number], b:[number]) => a.length === b.length && a.every((v, i) => v === b[i])
+const equals = (a: [number], b: [number]) => a.length === b.length && a.every((v, i) => v === b[i])
 
 export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
     const [badges, setBadges] = useState<Badges>({})
@@ -88,35 +88,22 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             navigation.goBack()
         screensDispatch({ type, index, screen })
     }
-
-
+    
     const ScreenManager: ScreenManagerProps = {
         removeScreen: (index: number) => {
-            const type = 'remove' 
+            const type = 'remove'
             if (index === screenIndex && navigation && navigation.canGoBack())
                 navigation.goBack()
             screensDispatch({ type, index, screen })
         },
-        insertScreen: (index: number, screen?: NavigationElement) => {
-            const type = 'insert' 
-            screensDispatch({ type, index, screen })
-        },
-        appendScreen: (screen?: NavigationElement) => {
-            const type = 'append' 
-            screensDispatch({ type, screen })
-        },
-        collapse: (node: number | [number]) => {
-            nodeHandler('collapse', node)
-        },
-        expand: (node: number | [number]) => {
-            nodeHandler('expand', node)
-        },
-        hide: (node: number | [number]) => {
-            nodeHandler('hide', node)
-        },
-        show: (node: number | [number]) => {
-            nodeHandler('show', node)
-        },
+        insertScreen: (index: number, screen?: NavigationElement) =>
+            screensDispatch({ type: 'insert', index, screen }),
+        appendScreen: (screen?: NavigationElement) =>
+            screensDispatch({ type: 'append', screen }),
+        collapse: (node: number | [number]) => nodeHandler('collapse', node),
+        expand: (node: number | [number]) => nodeHandler('expand', node),
+        hide: (node: number | [number]) => nodeHandler('hide', node),
+        show: (node: number | [number]) => nodeHandler('show', node),
         addChild: (parentScreenPath: [number], screenConfig: NavigationElement) => {
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
             if (!parentIndex) throw new Error(`addChild: Parent index not found`)
@@ -129,7 +116,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                     reducer('insert', index, screenConfig)
                     break
                 }
-                childIndex++                
+                childIndex++
             }
         },
         insertChild: (parentScreenPath: [number], insertChildIndex: number, screenConfig: NavigationElement) => {
