@@ -27,8 +27,10 @@ export default ({ initialScreens, ...restProps }: Props) => {
                 {...restProps}
                 drawerContent={props => <DrawerContent {...props} />}>
                 {screens.map((screen) => {
-                    const depthDelta = currentDepth - screen.depth
+                    const depthDelta = screen.depth - currentDepth
                     if (screen.depth > currentDepth) {
+                        if (depthDelta !== 1)
+                            throw new Error('depth step up change does not equal 1');                          
                         currentDepth++
                         parentStack.push(screen.routeName)
                     }
