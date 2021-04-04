@@ -61,7 +61,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                             onPress={() => navigateTo(routeName)}
                             key={`route-${routeName}-${Math.random()}`}
                             badgeText={badges[routeName] as string}
-                            style={{ marginLeft: (15 * depth) }}  // ToDo
+                            style={{ marginLeft: (15 * depth) }}
                         />
                     )
                 })}
