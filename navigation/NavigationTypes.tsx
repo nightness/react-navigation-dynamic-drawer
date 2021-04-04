@@ -14,6 +14,7 @@ export interface NavigationParams {
     focusedIconName?: string,
 }
 
+/* name was broken up in to label and routeName, only routeName needs to be unique */ 
 export interface NavigationElement {
     label: string,
     routeName: string,
