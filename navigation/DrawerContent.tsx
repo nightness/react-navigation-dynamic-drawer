@@ -59,7 +59,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                             iconName={params?.iconName}
                             focusedIconName={params?.focusedIconName}
                             onPress={() => navigateTo(routeName)}
-                            key={`route-${routeName}-${Math.random()}`}
+                            key={`${routeName}-${Math.random()}`}
                             badgeText={badges[routeName] as string}
                             style={{ marginLeft: (15 * depth) }}
                         />
