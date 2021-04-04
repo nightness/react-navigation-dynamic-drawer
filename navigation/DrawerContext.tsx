@@ -108,7 +108,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         rename: (node: number | [number], label: string) => nodeHandler('rename', node, label),
         addChild: (parentScreenPath: [number], screenConfig: NavigationElement) => {
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
-            if (!parentIndex) throw new Error(`addChild: Parent index not found`)
+            if (parentIndex === undefined) throw new Error(`addChild: Parent index not found`)
             const childDepth = screens[parentIndex].depth + 1
             var childIndex = -1
             for (let index = parentIndex + 1; index <= screens.length; index++) {
