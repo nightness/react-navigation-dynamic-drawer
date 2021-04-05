@@ -15,7 +15,7 @@ interface ReducerProps {
     screen?: NavigationElement
 }
 
-interface ScreenManagerProps {
+interface ScreenManagerType {
     removeScreen: (index: number) => void,
     insertScreen: (index: number, screen?: NavigationElement) => void,
     appendScreen: (screen?: NavigationElement) => void,
@@ -35,7 +35,7 @@ type ContextType = {
     badges: Badges,
     setBadge: (routeName: string, value: string) => void,
     screens: NavigationElements,
-    ScreenManager?: ScreenManagerProps,
+    ScreenManager?: ScreenManagerType,
     hamburgerBadge?: string,
     setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
     navigation?: NavigationHelpers<any>,
@@ -90,7 +90,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         screensDispatch({ type, index, screen })
     }
     
-    const ScreenManager: ScreenManagerProps = {
+    const ScreenManager: ScreenManagerType = {
         removeScreen: (index: number) => {
             const type = 'remove'
             if (index === screenIndex && navigation && navigation.canGoBack())
