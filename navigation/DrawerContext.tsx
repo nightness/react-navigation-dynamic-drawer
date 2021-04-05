@@ -83,7 +83,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         screensDispatch({ type, index: node, name })
     }
 
-    const reducer = (type: ScreenActions, index?: number, screen?: NavigationElement) => {
+    const dispatcher = (type: ScreenActions, index?: number, screen?: NavigationElement) => {
         // If removing the current screen, go back in the history first, then remove
         if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
             navigation.goBack()
@@ -118,7 +118,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
 
                 if (node.depth < childDepth) {
                     screenConfig.depth = childDepth
-                    reducer('insert', index, screenConfig)
+                    dispatcher('insert', index, screenConfig)
                     break
                 }
             }
@@ -136,7 +136,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 childIndex++
                 if (childIndex == insertChildIndex) {
                     screenConfig.depth = node.depth
-                    reducer('insert', index, screenConfig)
+                    dispatcher('insert', index, screenConfig)
                     break
                 }
             }
