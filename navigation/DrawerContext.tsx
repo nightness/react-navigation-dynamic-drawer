@@ -51,7 +51,7 @@ export const DrawerContext = createContext<ContextType>({
     setDrawerContent: (navigation: NavigationHelpers<any>, state: DrawerNavigationState<ParamListBase>) => undefined
 })
 
-const equals = (a: [number], b: [number]) => a.length === b.length && a.every((v, i) => v === b[i])
+const sameElements = (a: [number], b: [number]) => a.length === b.length && a.every((v, i) => v === b[i])
 
 export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
     const [badges, setBadges] = useState<Badges>({})
@@ -110,11 +110,9 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
             if (parentIndex === undefined) throw new Error(`addChild: Parent index not found`)
             const childDepth = screens[parentIndex].depth + 1
-            var childIndex = -1
             for (let index = parentIndex + 1; index <= screens.length; index++) {
                 const node = screens[index]
                 if (node.depth > childDepth) continue
-                childIndex++
 
                 if (node.depth < childDepth) {
                     screenConfig.depth = childDepth
@@ -151,7 +149,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
             let path: [number] = [0]
             let currentDepth = 0
 
-            if (equals(screenPath, [0])) return 0
+            if (sameElements(screenPath, [0])) return 0
             for (let index = 1; index <= screens.length; index++) {
                 // Check for a depth change
                 const { depth } = screens[index]
@@ -167,7 +165,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 // Increment the path's index for this depth
                 path[currentDepth]++
 
-                if (equals(screenPath, path)) {
+                if (sameElements(screenPath, path)) {
                     return index
                 }
             }
