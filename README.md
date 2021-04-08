@@ -1,51 +1,29 @@
-# ****EARLY DOCUMENTATION****
 # react-navigation-dynamic-drawer
-Dynamically add or remove screens to/from a react-navigation/drawer. I'm working on developing a robust react-navigation Drawer navigator.
 
-# Setup
+> Dynamically add or remove screens to/from a react-navigation/drawer and optionally organize them in a tree structure.
 
-```
-npm i -g expo-cli
-yarn
-```
+[![NPM](https://img.shields.io/npm/v/react-navigation-dynamic-drawer.svg)](https://www.npmjs.com/package/react-navigation-dynamic-drawer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-# Expo Server Startup
+## Install
 
-```
-expo start
+```bash
+npm install --save react-navigation-dynamic-drawer
 ```
 
-# Component Layout
+## Usage
 
 ```tsx
+import React, { Component } from 'react'
 
-<NavigationContainer>
-    <DrawerNavigator initialScreens={initialScreens} />
-</NavigationContainer>
-```
+import MyComponent from 'react-navigation-dynamic-drawer'
 
-DrawerNavigator generates it's own children based on initialScreens, and contains the stateful array of those screens. Here is DrawerNavigator...
-
-```tsx
-export default ({ initialScreens, ...restProps }: Props) => {
-    // The stateful array of screens
-    const [screens, screensDispatch] = useReducer(RoutingReducer, initialScreens)
-
-    return (
-        <DrawerProvider screens={screens} screensDispatch={screensDispatch}>
-            <Drawer.Navigator
-                {...restProps}
-                drawerContent={props => <DrawerContent {...props} />}                
-            >
-                {
-                    screens.map((screen) => {
-                        // The <Drawer.Screen />'s
-                    })
-                }
-            </Drawer.Navigator>
-        </DrawerProvider>
-    )
+class Example extends Component {
+  render() {
+    return <MyComponent />
+  }
 }
 ```
 
-The DrawerProvider is a Context.Provider that contains badge text state, the stateful Drawer screens and it's reducer function. It also has the navigation and state objects from the DrawerContent.
+## License
+
+Apache-2.0 © [nightness](https://github.com/nightness)
