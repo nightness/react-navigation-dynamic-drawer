@@ -28,10 +28,10 @@ export default ({ initialScreens, ...restProps }: Props) => {
                 drawerContent={props => <DrawerContent {...props} />}>
                 {screens.map((screen) => {
                     const depthDelta = screen.depth - currentDepth
+                    if (depthDelta > 1)
+                        throw new Error('depth step up is > 1, grandchildren with no children?');
                     // Depth increased since last screen
                     if (screen.depth > currentDepth) {
-                        if (depthDelta !== 1)
-                            throw new Error('depth step up is > 1, grandchildren with no children?');
                         currentDepth++
                         parentStack.push(screen.routeName)
                     }
