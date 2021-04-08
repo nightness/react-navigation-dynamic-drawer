@@ -83,13 +83,12 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         screensDispatch({ type, index: node, name })
     }
 
-    const dispatcher = (type: ScreenActions, index?: number, screen?: NavigationElement) => {
-        // If removing the current screen, go back in the history first, then remove
-        if (type === 'remove' && index === screenIndex && navigation && navigation.canGoBack())
-            navigation.goBack()
-        screensDispatch({ type, index, screen })
-    }
-    
+    const dispatcher = (
+        type: ScreenActions,
+        index?: number,
+        screen?: NavigationElement
+    ) => screensDispatch({ type, index, screen })
+
     const ScreenManager: ScreenManagerType = {
         removeScreen: (index: number) => {
             const type = 'remove'
@@ -140,7 +139,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         },
         removeChild: (parentScreenPath: [number], removeChildIndex: number) => {
             const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
-            if (parentIndex === undefined) throw new Error(`insertChild: Parent index not found`)
+            if (parentIndex === undefined) throw new Error(`removeChild: Parent index not found`)
             const childDepth = screens[parentIndex].depth + 1
             var childIndex = -1
             for (let index = parentIndex + 1; index <= screens.length; index++) {
@@ -149,6 +148,9 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
                 if (node.depth < childDepth) break
                 childIndex++
                 if (childIndex == removeChildIndex) {
+                    // If removing the current screen, go back in the history first, then remove
+                    if (removeChildIndex === screenIndex && navigation && navigation.canGoBack())
+                        navigation.goBack()
                     dispatcher('remove', index)
                     break
                 }

@@ -31,14 +31,13 @@ export default ({ initialScreens, ...restProps }: Props) => {
                     // Depth increased since last screen
                     if (screen.depth > currentDepth) {
                         if (depthDelta !== 1)
-                            throw new Error('depth step up change does not equal 1');                          
+                            throw new Error('depth step up is > 1, grandchildren with no children?');
                         currentDepth++
                         parentStack.push(screen.routeName)
                     }
                     // Depth decreased since last screen
                     if (screen.depth < currentDepth) {
-                        for (let i = depthDelta; i < 0; i++) {
-                            currentDepth--
+                        for (let i = depthDelta; i > 0; i--) {
                             parentStack.pop()
                         }
                     }
