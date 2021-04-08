@@ -1,5 +1,5 @@
 import DrawerNavigator from './navigation/DrawerNavigator'
-import DrawerContext from './navigation/DrawerContext'
+import { DrawerProvider, DrawerContext } from './navigation/DrawerContext'
 import {
   NavigationElement,
   NavigationElements,
@@ -10,6 +10,7 @@ import {
 export {
   DrawerNavigator,
   DrawerContext,
+  DrawerProvider,
   NavigationElement,
   NavigationElements,
   NavigationParams,

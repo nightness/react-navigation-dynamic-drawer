@@ -69,7 +69,7 @@ export const DrawerContext = createContext<ContextType>({
 const sameElements = (a: [number], b: [number]) =>
   a.length === b.length && a.every((v, i) => v === b[i])
 
-export default ({ children, screens, screensDispatch }: Props) => {
+export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
   const [badges, setBadges] = useState<Badges>({})
   const [hamburgerBadge, setHamburgerBadge] = useState<string>()
   const [navigation, setNavigation] = useState<NavigationHelpers<any>>()

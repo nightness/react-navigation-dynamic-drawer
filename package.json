@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-dynamic-drawer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Dynamically add or remove screens to/from a react-navigation/drawer and optionally organize them in a tree structure.",
   "author": "nightness",
   "license": "Apache-2.0",
@@ -38,7 +38,6 @@
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
