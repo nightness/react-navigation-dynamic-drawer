@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 
 export default (props: DrawerContentComponentProps) => {
-    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
+    const { activeClaims, badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
@@ -31,7 +31,7 @@ export default (props: DrawerContentComponentProps) => {
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { label, depth, isHidden } = screens[routeIndex]                    
+                    const { label, depth, isHidden, claims } = screens[routeIndex]                    
                     if (depth > currentDepth) {
                         currentDepth++
                         elementStack.push(screens[routeIndex - 1])
@@ -45,8 +45,11 @@ export default (props: DrawerContentComponentProps) => {
                         !isHidden &&
                         !elementStack[0]?.isCollapsed &&
                         (depth === 0 || theHidden.length === 0)
+
+                    const hasClaim = !claims ? true :
+                        claims.filter(value => activeClaims?.includes(value)).length > 0
                     
-                    if (!isVisible)
+                    if (!isVisible || !hasClaim)
                         return (<View key={`${routeName}-${Math.random()}`} />)
 
                     return (

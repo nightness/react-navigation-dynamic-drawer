@@ -12,11 +12,12 @@ const Drawer = createDrawerNavigator()
 
 interface Props {
     children?: JSX.Element | [JSX.Element]
+    claims?: [string]
     initialScreens: NavigationElements,
     drawerStyle?: StyleProp<ViewStyle>
 }
 
-export default ({ initialScreens,children, ...restProps }: Props) => {
+export default ({ initialScreens, claims, children, ...restProps }: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(ScreensReducer, initialScreens)
 
@@ -25,7 +26,7 @@ export default ({ initialScreens,children, ...restProps }: Props) => {
 
     return (
         <NavigationContainer>
-            <DrawerProvider screens={screens} screensDispatch={screensDispatch}>
+            <DrawerProvider activeClaims={claims} screens={screens} screensDispatch={screensDispatch}>
                 <Drawer.Navigator
                     {...restProps}
                     drawerContent={props => <DrawerContent {...props} />}>
@@ -44,6 +45,8 @@ export default ({ initialScreens,children, ...restProps }: Props) => {
                                 parentStack.pop()
                             }
                         }
+
+                        // Return the Drawer.Screen
                         return (
                             <Drawer.Screen
                                 name={screen.routeName}

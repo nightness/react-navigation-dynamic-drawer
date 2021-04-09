@@ -13,6 +13,7 @@ import { ScreenActions } from './RoutingReducer'
 
 interface Props {
   children: JSX.Element | JSX.Element[]
+  activeClaims?: [string]
   screens: NavigationElements
   screensDispatch: React.Dispatch<any>
 }
@@ -47,6 +48,7 @@ type ContextType = {
   ScreenManager?: ScreenManagerType
   hamburgerBadge?: string
   setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
+  activeClaims?: [string]
   navigation?: NavigationHelpers<any>
   state?: DrawerNavigationState<ParamListBase>
   screenIndex?: number
@@ -69,7 +71,7 @@ export const DrawerContext = createContext<ContextType>({
 const sameElements = (a: [number], b: [number]) =>
   a.length === b.length && a.every((v, i) => v === b[i])
 
-export const DrawerProvider = ({ children, screens, screensDispatch }: Props) => {
+export const DrawerProvider = ({ children, screens, activeClaims,  screensDispatch }: Props) => {
   const [badges, setBadges] = useState<Badges>({})
   const [hamburgerBadge, setHamburgerBadge] = useState<string>()
   const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
@@ -251,6 +253,7 @@ export const DrawerProvider = ({ children, screens, screensDispatch }: Props) =>
         ScreenManager,
         hamburgerBadge,
         setHamburgerBadge,
+        activeClaims,
         setDrawerContent
       }}
     >
