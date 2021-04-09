@@ -82,7 +82,7 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelText, badg
                     <Text style={{ flex: 3, fontWeight: '600' }}>{labelText}</Text>
                     { badgeText ?
                         <Badge badgeStyle={{ height: 22 }}>{badgeText}</Badge>
-                        : <></>
+                        : <React.Fragment />
                     }
                 </View>
             )}
