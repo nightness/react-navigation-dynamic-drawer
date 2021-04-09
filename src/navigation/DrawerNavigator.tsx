@@ -11,7 +11,7 @@ import { NavigationContainer } from '@react-navigation/native'
 const Drawer = createDrawerNavigator()
 
 interface Props {
-    children: JSX.Element | [JSX.Element]
+    children?: JSX.Element | [JSX.Element]
     initialScreens: NavigationElements,
     drawerStyle?: StyleProp<ViewStyle>
 }
