@@ -30,7 +30,7 @@ export default ({ initialScreens, claims, children, ...restProps }: Props) => {
                 <Drawer.Navigator
                     {...restProps}
                     drawerContent={props => <DrawerContent {...props} />}>
-                    {screens.map((screen) => {
+                    {screens.map((screen, index) => {
                         const depthDelta = screen.depth - currentDepth
                         if (depthDelta > 1)
                             throw new Error('depth step up is > 1, grandchildren with no children?');
@@ -45,6 +45,11 @@ export default ({ initialScreens, claims, children, ...restProps }: Props) => {
                                 parentStack.pop()
                             }
                         }
+
+                        // This sets isRestricted for each screen based on claims first,
+                        // and existing isRestricted value secondly
+                        screens[index].isRestricted = !screen.claims ? !!screen?.isRestricted :
+                            screen.claims.filter(value => claims?.includes(value)).length === 0
 
                         // Return the Drawer.Screen
                         return (

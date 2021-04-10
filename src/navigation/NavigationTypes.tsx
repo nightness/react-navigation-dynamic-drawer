@@ -27,6 +27,7 @@ export interface NavigationElement {
     claims?: [string],
     isHidden?: boolean,
     isCollapsed?: boolean
+    isRestricted?: boolean
 }
 
 export type NavigationElements = NavigationElement[]

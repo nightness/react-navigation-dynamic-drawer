@@ -24,7 +24,7 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <ThemeProvider theme={darkTheme}>
-                <DrawerNavigator initialScreens={initialScreens}>
+                <DrawerNavigator claims={['!admin']} initialScreens={initialScreens}>
                     <ModalPortal />
                 </DrawerNavigator>
             </ThemeProvider>
@@ -96,6 +96,7 @@ const initialScreens: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
+        claims: ['admin'],
         //isCollapsed: true,
         depth: 0
     },
