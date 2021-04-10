@@ -42,7 +42,7 @@ export default (props: DrawerContentComponentProps) => {
                     }
                     const hiddenParents = elementStack.filter(
                         (item) => item.isHidden || item.isCollapsed || item.isRestricted)                                            
-                    const isVisible = (!isHidden && !isCollapsed && !isRestricted && hiddenParents.length === 0)                        
+                    const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)                        
 
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`} />)
