@@ -188,6 +188,22 @@ export default ({ style, navigation }: Props) => {
                         }}
                     />
                 </View>
+                <View style={{ margin: 5 }}>
+                    <Button
+                        title='Toggle Home isCollapsed'
+                        onPress={() => {
+                            if (ScreenManager && typeof screenIndex === 'number' && screenIndex >= 0) {
+                                if (screens[screenIndex].isCollapsed)
+                                    ScreenManager.expand(screenIndex)
+                                else
+                                    ScreenManager.collapse(screenIndex)
+                                showMessageBox('Completed', `Toggle Home Parent isCollapsed'`)
+                            } else {
+                                showMessageBox('???', `This should not happen`)
+                            }
+                        }}
+                    />
+                </View>
             </View>
         </>
     )
