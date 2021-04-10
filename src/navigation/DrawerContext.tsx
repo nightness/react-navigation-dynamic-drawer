@@ -71,7 +71,7 @@ export const DrawerContext = createContext<ContextType>({
 const sameElements = (a: [number], b: [number]) =>
   a.length === b.length && a.every((v, i) => v === b[i])
 
-export const DrawerProvider = ({ children, screens, activeClaims,  screensDispatch }: Props) => {
+export const DrawerProvider = ({ children, screens, activeClaims, screensDispatch }: Props) => {
   const [badges, setBadges] = useState<Badges>({})
   const [hamburgerBadge, setHamburgerBadge] = useState<string>()
   const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
@@ -103,7 +103,8 @@ export const DrawerProvider = ({ children, screens, activeClaims,  screensDispat
       node = index
     }
     // At this point node is for sure an index
-    screensDispatch({ type, index: node, name })
+    const dispatch = { type, index: node, name }
+    screensDispatch(dispatch)
   }
 
   const dispatcher = (
