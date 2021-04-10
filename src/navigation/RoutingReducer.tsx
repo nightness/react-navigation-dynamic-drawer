@@ -63,7 +63,7 @@ export const ScreensReducer = (currentState: NavigationElements, action: ScreenA
         case 'expand': {
             if (index !== -1 && index < currentState.length) {
                 currentState[index].isCollapsed = false
-                return {...currentState}
+                return [...currentState]
             }
             return currentState
         }
