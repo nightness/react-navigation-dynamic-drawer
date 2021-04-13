@@ -8,7 +8,6 @@ import { DrawerNavigator, NavigationElements } from 'react-navigation-dynamic-dr
 import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const sharedTheme = {
 
@@ -22,13 +21,11 @@ const darkTheme = {
 
 export default function App() {
     return (
-        <SafeAreaProvider>
-            <ThemeProvider theme={darkTheme}>
-                <DrawerNavigator claims={['!admin']} initialScreens={initialScreens}>
-                    <ModalPortal />
-                </DrawerNavigator>
-            </ThemeProvider>
-        </SafeAreaProvider>
+        <ThemeProvider theme={darkTheme}>
+            <DrawerNavigator claims={['!admin']} initialScreens={initialScreens}>
+                <ModalPortal />
+            </DrawerNavigator>
+        </ThemeProvider>
     )
 }
 

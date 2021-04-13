@@ -6,7 +6,6 @@ import {
 import { DrawerContext } from './DrawerContext'
 import DrawerContentItem from './DrawerContentItem'
 import { NavigationElements, NavigationParams } from './NavigationTypes'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 
 export default (props: DrawerContentComponentProps) => {
@@ -26,7 +25,7 @@ export default (props: DrawerContentComponentProps) => {
     })
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
             <DrawerContentScrollView bounces={false} {...props}>
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
@@ -64,6 +63,6 @@ export default (props: DrawerContentComponentProps) => {
                     )
                 })}
             </DrawerContentScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
