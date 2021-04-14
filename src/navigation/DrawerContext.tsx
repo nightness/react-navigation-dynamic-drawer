@@ -13,7 +13,7 @@ import { ScreenActions } from './RoutingReducer'
 
 interface Props {
   children: JSX.Element | JSX.Element[]
-  activeClaims?: [string]
+  activeClaims?: string[]
   screens: NavigationElements
   screensDispatch: React.Dispatch<any>
 }
@@ -22,23 +22,23 @@ interface ScreenManagerType {
   removeScreen: (index: number) => void
   insertScreen: (index: number, screen?: NavigationElement) => void
   appendScreen: (screen?: NavigationElement) => void
-  getScreenIndex: (screenPath: [number]) => number | undefined
-  getScreenPath: (index: number) => [number] | undefined
+  getScreenIndex: (screenPath: number[]) => number | undefined
+  getScreenPath: (index: number) => number[] | undefined
   addChild: (
-    parentScreenPath: [number],
+    parentScreenPath: number[],
     screenConfig: NavigationElement
   ) => void
   insertChild: (
-    screenPath: [number],
+    screenPath: number[],
     index: number,
     screenConfig: NavigationElement
   ) => void
-  removeChild: (parentScreenPath: [number], removeChildIndex: number) => void
-  collapse: (child: number | [number]) => void
-  expand: (node: number | [number]) => void
-  hide: (node: number | [number]) => void
-  show: (node: number | [number]) => void
-  rename: (node: number | [number], label: string) => void
+  removeChild: (parentScreenPath: number[], removeChildIndex: number) => void
+  collapse: (child: number | number[]) => void
+  expand: (node: number | number[]) => void
+  hide: (node: number | number[]) => void
+  show: (node: number | number[]) => void
+  rename: (node: number | number[], label: string) => void
 }
 
 type ContextType = {
@@ -48,7 +48,7 @@ type ContextType = {
   ScreenManager?: ScreenManagerType
   hamburgerBadge?: string
   setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
-  activeClaims?: [string]
+  activeClaims?: string[]
   navigation?: NavigationHelpers<any>
   state?: DrawerNavigationState<ParamListBase>
   screenIndex?: number
@@ -68,7 +68,7 @@ export const DrawerContext = createContext<ContextType>({
   ) => undefined
 })
 
-const sameElements = (a: [number], b: [number]) =>
+const sameElements = (a: number[], b: number[]) =>
   a.length === b.length && a.every((v, i) => v === b[i])
 
 export const DrawerProvider = ({ children, screens, activeClaims, screensDispatch }: Props) => {
@@ -94,7 +94,7 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
 
   const nodeHandler = (
     type: ScreenActions,
-    node: number | [number],
+    node: number | number[],
     name?: string
   ) => {
     if (Array.isArray(node)) {
@@ -124,13 +124,13 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
       screensDispatch({ type: 'insert', index, screen }),
     appendScreen: (screen?: NavigationElement) =>
       screensDispatch({ type: 'append', screen }),
-    collapse: (node: number | [number]) => nodeHandler('collapse', node),
-    expand: (node: number | [number]) => nodeHandler('expand', node),
-    hide: (node: number | [number]) => nodeHandler('hide', node),
-    show: (node: number | [number]) => nodeHandler('show', node),
-    rename: (node: number | [number], label: string) =>
+    collapse: (node: number | number[]) => nodeHandler('collapse', node),
+    expand: (node: number | number[]) => nodeHandler('expand', node),
+    hide: (node: number | number[]) => nodeHandler('hide', node),
+    show: (node: number | number[]) => nodeHandler('show', node),
+    rename: (node: number | number[], label: string) =>
       nodeHandler('rename', node, label),
-    addChild: (parentScreenPath: [number], screenConfig: NavigationElement) => {
+    addChild: (parentScreenPath: number[], screenConfig: NavigationElement) => {
       const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
       if (parentIndex === undefined)
         throw new Error(`addChild: Parent index not found`)
@@ -147,7 +147,7 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
       }
     },
     insertChild: (
-      parentScreenPath: [number],
+      parentScreenPath: number[],
       insertChildIndex: number,
       screenConfig: NavigationElement
     ) => {
@@ -168,7 +168,7 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
         }
       }
     },
-    removeChild: (parentScreenPath: [number], removeChildIndex: number) => {
+    removeChild: (parentScreenPath: number[], removeChildIndex: number) => {
       const parentIndex = ScreenManager.getScreenIndex(parentScreenPath)
       if (parentIndex === undefined)
         throw new Error(`removeChild: Parent index not found`)
@@ -192,8 +192,8 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
         }
       }
     },
-    getScreenIndex: (screenPath: [number]) => {
-      const path: [number] = [0]
+    getScreenIndex: (screenPath: number[]) => {
+      const path: number[] = [0]
       let currentDepth = 0
 
       if (sameElements(screenPath, [0])) return 0
@@ -219,7 +219,7 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
       return -1
     },
     getScreenPath: (searchIndex: number) => {
-      const path: [number] = [0]
+      const path: number[] = [0]
       let currentDepth = 0
 
       for (let index = 1; index <= searchIndex; index++) {

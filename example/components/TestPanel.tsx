@@ -194,9 +194,8 @@ export default ({ style, navigation }: Props) => {
                         onPress={() => {
                             if (ScreenManager && typeof screenIndex === 'number' && screenIndex >= 0) {
                                 const isCollapsed = screens[screenIndex].isCollapsed
-                                if (isCollapsed)
-                                    ScreenManager.expand(screenIndex)
-                                else
+                                isCollapsed ?
+                                    ScreenManager.expand(screenIndex) :
                                     ScreenManager.collapse(screenIndex)
                                 showMessageBox('Completed', `Toggle Home Parent ${isCollapsed ? 'collapsed' : 'expanded'}`)
                             } else {

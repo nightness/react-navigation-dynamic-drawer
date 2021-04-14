@@ -1,34 +1,35 @@
 import 'react-native-gesture-handler'
-import React, { Fragment, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from './DrawerContext'
 import DrawerContent from './DrawerContent'
 import { ScreensReducer } from './RoutingReducer'
 import { NavigationElements } from './NavigationTypes'
 import { StyleProp, ViewStyle } from 'react-native'
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
 const Drawer = createDrawerNavigator()
 
 interface Props {
-    children?: JSX.Element | [JSX.Element]
-    claims?: [string]
+    children?: JSX.Element | JSX.Element[],
+    claims?: string[],
+    colors?: string[],
+    linearGradientBackgroundColors: string[],
     initialScreens: NavigationElements,
     drawerStyle?: StyleProp<ViewStyle>
 }
 
-export default ({ initialScreens, claims, children: parentChildren, ...restProps }: Props) => {
+export default ({ initialScreens, colors, claims, children: parentChildren, ...restProps }: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(ScreensReducer, initialScreens)
 
-    const parentStack: [string] = ['[root]']
+    const parentStack: string[] = []
     let currentDepth = -1
 
     return (
         <DrawerProvider activeClaims={claims} screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
                 {...restProps}
-                drawerContent={props => <DrawerContent {...props} />}>
+                drawerContent={props => <DrawerContent {...props} colors={colors} />}>
                 {screens.map((screen, index) => {
                     const depthDelta = screen.depth - currentDepth
                     if (depthDelta > 1)

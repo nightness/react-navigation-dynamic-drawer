@@ -24,7 +24,7 @@ export interface NavigationElement {
     component: ComponentType<any>,
     initialParams: NavigationParams,
     depth: number,
-    claims?: [string],
+    claims?: string[],
     isHidden?: boolean,
     isCollapsed?: boolean
     isRestricted?: boolean

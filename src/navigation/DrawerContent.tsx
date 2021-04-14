@@ -5,10 +5,15 @@ import {
 } from '@react-navigation/drawer'
 import { DrawerContext } from './DrawerContext'
 import DrawerContentItem from './DrawerContentItem'
+import DrawerBackground from './DrawerBackground'
 import { NavigationElements, NavigationParams } from './NavigationTypes'
 import { View } from 'react-native'
 
-export default (props: DrawerContentComponentProps) => {
+interface Props extends DrawerContentComponentProps {
+    colors?: string[]
+}
+
+export default (props: Props) => {
     const { activeClaims, badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
@@ -25,12 +30,12 @@ export default (props: DrawerContentComponentProps) => {
     })
 
     return (
-        <View style={{ flex: 1 }}>
+        <DrawerBackground colors={props.colors}>
             <DrawerContentScrollView bounces={false} {...props}>
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { label, depth, isHidden, isCollapsed, isRestricted } = screens[routeIndex]                            
+                    const { label, depth, isHidden, isCollapsed, isRestricted } = screens[routeIndex]
                     if (depth > currentDepth) {
                         currentDepth++
                         elementStack.push(screens[routeIndex - 1])
@@ -40,8 +45,8 @@ export default (props: DrawerContentComponentProps) => {
                         elementStack.pop()
                     }
                     const hiddenParents = elementStack.filter(
-                        (item) => item.isHidden || item.isCollapsed || item.isRestricted)                                            
-                    const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)                        
+                        (item) => item.isHidden || item.isCollapsed || item.isRestricted)
+                    const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
 
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`} />)
@@ -63,6 +68,6 @@ export default (props: DrawerContentComponentProps) => {
                     )
                 })}
             </DrawerContentScrollView>
-        </View>
+        </DrawerBackground>
     )
 }
