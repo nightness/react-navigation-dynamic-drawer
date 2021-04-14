@@ -22,9 +22,10 @@ const darkTheme = {
 export default function App() {
     return (
         <ThemeProvider theme={darkTheme}>
-            <DrawerNavigator claims={['!admin']} initialScreens={initialScreens}>
+            <NavigationContainer>
+                <DrawerNavigator claims={['!admin']} initialScreens={initialScreens} />
                 <ModalPortal />
-            </DrawerNavigator>
+            </NavigationContainer>
         </ThemeProvider>
     )
 }

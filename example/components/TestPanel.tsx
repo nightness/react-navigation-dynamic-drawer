@@ -193,11 +193,12 @@ export default ({ style, navigation }: Props) => {
                         title='Toggle Home isCollapsed'
                         onPress={() => {
                             if (ScreenManager && typeof screenIndex === 'number' && screenIndex >= 0) {
-                                if (screens[screenIndex].isCollapsed)
+                                const isCollapsed = screens[screenIndex].isCollapsed
+                                if (isCollapsed)
                                     ScreenManager.expand(screenIndex)
                                 else
                                     ScreenManager.collapse(screenIndex)
-                                showMessageBox('Completed', `Toggle Home Parent isCollapsed'`)
+                                showMessageBox('Completed', `Toggle Home Parent ${isCollapsed ? 'collapsed' : 'expanded'}`)
                             } else {
                                 showMessageBox('???', `This should not happen`)
                             }
