@@ -12,13 +12,12 @@ const Drawer = createDrawerNavigator()
 interface Props {
     children?: JSX.Element | JSX.Element[],
     claims?: string[],
-    colors?: string[],
-    linearGradientBackgroundColors: string[],
+    linearGradientBackgroundColors?: [string, string, string],
     initialScreens: NavigationElements,
     drawerStyle?: StyleProp<ViewStyle>
 }
 
-export default ({ initialScreens, colors, claims, children: parentChildren, ...restProps }: Props) => {
+export default ({ initialScreens, linearGradientBackgroundColors: colors, claims, children: parentChildren, ...restProps }: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(ScreensReducer, initialScreens)
 

@@ -10,7 +10,7 @@ interface BackgroundProps {
 export default ({ children, colors }: BackgroundProps) => {
     if (colors) return (
         <View style={{ flex: 1 }}>
-            <LinearGradient colors={colors}>
+            <LinearGradient style={{ flex: 1 }} colors={colors}>
                 {children}
             </LinearGradient>
         </View>
