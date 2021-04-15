@@ -77,9 +77,9 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelText, badg
         <DrawerItem            
             pressOpacity='90%'
             focused={focused}
-            label={() => (
+            label={({ focused, color }) => (
                 <View style={{ flex: 1, marginLeft: -15, flexDirection: 'row' }}>
-                    <Text style={{ flex: 3, fontWeight: '600' }}>{labelText}</Text>
+                    <Text style={{ flex: 3, fontWeight: '600', color }}>{labelText}</Text>
                     { badgeText ?
                         <Badge badgeStyle={{ height: 22 }}>{badgeText}</Badge>
                         : <React.Fragment />
