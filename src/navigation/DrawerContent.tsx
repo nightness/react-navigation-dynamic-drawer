@@ -6,11 +6,13 @@ import {
 import { DrawerContext } from './DrawerContext'
 import DrawerContentItem from './DrawerContentItem'
 import DrawerBackground from './DrawerBackground'
-import { NavigationElements, NavigationParams } from './NavigationTypes'
-import { View } from 'react-native'
+import { Gradient, NavigationElements, NavigationParams } from './NavigationTypes'
+import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
 
 interface Props extends DrawerContentComponentProps {
-    colors?: string[]
+    background?: string | Gradient
+    drawerStyle?: StyleProp<ViewStyle>,
+    labelStyle?: StyleProp<TextStyle>    
 }
 
 export default (props: Props) => {
@@ -30,12 +32,12 @@ export default (props: Props) => {
     })
 
     return (
-        <DrawerBackground colors={props.colors}>
+        <DrawerBackground background={props.background}>
             <DrawerContentScrollView bounces={false} {...props}>
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { label, depth, isHidden, isCollapsed, isRestricted } = screens[routeIndex]
+                    const { label, depth, isHidden, isRestricted } = screens[routeIndex]
                     if (depth > currentDepth) {
                         currentDepth++
                         elementStack.push(screens[routeIndex - 1])

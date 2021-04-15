@@ -7300,10 +7300,10 @@ react-navigation-drawer@^2.7.0:
   resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-2.7.0.tgz#794b4214a6b5debde1f8f90e18e3e63aa738e628"
   integrity sha512-BKQSTpFPGVI3caFlIbY921NYTRDAf9XFCCmyy4aDlxZLI5FNh8FqzrG10voc5AGy7RegjLdNkkJa40ugu0I5jA==
 
-react-navigation-dynamic-drawer@^1.0.50:
-  version "1.0.50"
-  resolved "https://registry.yarnpkg.com/react-navigation-dynamic-drawer/-/react-navigation-dynamic-drawer-1.0.50.tgz#52637d0bce0117487d1144dc3e2ea673114c5725"
-  integrity sha512-/p+6/wtt1Bg64Y75v72IljyNp4HV38L5qdi/l+8z/eZw6bdLOvkeWe0s3Ox12uLu72c1nykBv7+JPXDVgbE7tQ==
+react-navigation-dynamic-drawer@^1.0.54:
+  version "1.0.54"
+  resolved "https://registry.yarnpkg.com/react-navigation-dynamic-drawer/-/react-navigation-dynamic-drawer-1.0.54.tgz#3d5844d34815e22c73dc1182cde6bd18cbdbdd48"
+  integrity sha512-uSO63apYUl4cjLL6Bw37Y+AsggXWrVphwRspHVR8Q00kpcVWF3n2rc8Q6E/ZVdXbUzIwk4y7dFJJuDOJUIRtxA==
   dependencies:
     "@react-native-community/masked-view" "^0.1.10"
     "@react-navigation/drawer" "^5.12.5"

@@ -4,20 +4,25 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerProvider } from './DrawerContext'
 import DrawerContent from './DrawerContent'
 import { ScreensReducer } from './RoutingReducer'
-import { NavigationElements } from './NavigationTypes'
-import { StyleProp, ViewStyle } from 'react-native'
+import { Gradient, NavigationElements } from './NavigationTypes'
+import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
-
 interface Props {
     children?: JSX.Element | JSX.Element[],
     claims?: string[],
-    linearGradientBackgroundColors?: [string, string, string],
+    background?: string | Gradient,
     initialScreens: NavigationElements,
-    drawerStyle?: StyleProp<ViewStyle>
+    drawerStyle?: StyleProp<ViewStyle>,
+    labelStyle?: StyleProp<TextStyle>
 }
 
-export default ({ initialScreens, linearGradientBackgroundColors: colors, claims, children: parentChildren, ...restProps }: Props) => {
+export default ({
+    initialScreens,
+    claims,
+    children: parentChildren,
+    ...restProps
+}: Props) => {
     // The stateful list of screens
     const [screens, screensDispatch] = useReducer(ScreensReducer, initialScreens)
 
@@ -28,7 +33,7 @@ export default ({ initialScreens, linearGradientBackgroundColors: colors, claims
         <DrawerProvider activeClaims={claims} screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
                 {...restProps}
-                drawerContent={props => <DrawerContent {...props} colors={colors} />}>
+                drawerContent={props => <DrawerContent {...props} {...restProps}/>}>
                 {screens.map((screen, index) => {
                     const depthDelta = screen.depth - currentDepth
                     if (depthDelta > 1)

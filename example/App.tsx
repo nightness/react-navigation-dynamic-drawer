@@ -23,7 +23,11 @@ export default function App() {
     return (
         <ThemeProvider theme={darkTheme}>
             <NavigationContainer>
-                <DrawerNavigator claims={['!admin']} initialScreens={initialScreens} />
+                <DrawerNavigator
+                    claims={['!admin']}
+                    initialScreens={initialScreens}
+                    
+                />
                 <ModalPortal />
             </NavigationContainer>
         </ThemeProvider>

@@ -72,14 +72,14 @@ declare type Props = {
     navigation: DrawerNavigationHelpers
 }
 
-export default ({ focusedIconName, iconGroup, iconName, focused, labelText, badgeText, ...restProps }: Props) => {
+export default ({ focusedIconName, iconGroup, iconName, focused, labelStyle, labelText, badgeText, style, ...restProps }: Props) => {
     return (
         <DrawerItem            
             pressOpacity='90%'
             focused={focused}
             label={({ focused, color }) => (
-                <View style={{ flex: 1, marginLeft: -15, flexDirection: 'row' }}>
-                    <Text style={{ flex: 3, fontWeight: '600', color }}>{labelText}</Text>
+                <View style={[{ flex: 1, marginLeft: -15, flexDirection: 'row' }, style]}>
+                    <Text style={[{ flex: 3, fontWeight: '600', color }, labelStyle]}>{labelText}</Text>
                     { badgeText ?
                         <Badge badgeStyle={{ height: 22 }}>{badgeText}</Badge>
                         : <React.Fragment />
@@ -88,7 +88,12 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelText, badg
             )}
             icon={({ focused, color, size }) => {
                 return (
-                    <Icon color={color} size={size} name={iconName} type={iconGroup} />
+                    <Icon
+                        color={color}
+                        size={size}
+                        name={focused && focusedIconName ? focusedIconName : iconName}
+                        type={iconGroup}
+                    />
                 )
             }}
             {...restProps}

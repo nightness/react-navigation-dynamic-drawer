@@ -6,6 +6,8 @@ export type Notifications = {
 
 export type Badges = { [routeName: string] : {} }
 
+export type Gradient = [string, string, ...string[]]
+
 export interface NavigationParams {
     activeTintColor?: string,
     inactiveTintColor?: string,
