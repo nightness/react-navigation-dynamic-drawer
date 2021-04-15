@@ -33,7 +33,7 @@ export default ({
         <DrawerProvider activeClaims={claims} screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
                 {...restProps}
-                drawerContent={props => <DrawerContent {...props} {...restProps}/>}>
+                drawerContent={props => <DrawerContent {...restProps} {...props}/>}>
                 {screens.map((screen, index) => {
                     const depthDelta = screen.depth - currentDepth
                     if (depthDelta > 1)
