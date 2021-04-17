@@ -188,7 +188,7 @@ export default ({ style, navigation }: Props) => {
                 </View>
                 <View style={{ margin: 5 }}>
                     <Button
-                        title='Toggle current children collapsed'
+                        title={`Toggle current screen's children collapsed`}
                         onPress={() => {
                             if (ScreenManager && typeof screenIndex === 'number' && screenIndex >= 0) {
                                 const isCollapsed = screens[screenIndex].isCollapsed
