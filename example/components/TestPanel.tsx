@@ -2,8 +2,6 @@ import { DrawerNavigationProp } from '@react-navigation/drawer'
 import React, { useContext, useState } from 'react'
 import { View, Button } from 'react-native'
 import { DrawerContext } from 'react-navigation-dynamic-drawer'
-//import { DrawerContext } from '../navigation/DynamicNavigation'
-// import { DrawerContext } from '../navigation/DrawerContext'
 import { Dynamic } from '../screens/Dynamic'
 import { MessageBoxModal } from '../modals/MessageBoxModal'
 import { InputBoxModal } from '../modals/InputBoxModal'
@@ -190,14 +188,14 @@ export default ({ style, navigation }: Props) => {
                 </View>
                 <View style={{ margin: 5 }}>
                     <Button
-                        title='Toggle Home isCollapsed'
+                        title='Toggle current children collapsed'
                         onPress={() => {
                             if (ScreenManager && typeof screenIndex === 'number' && screenIndex >= 0) {
                                 const isCollapsed = screens[screenIndex].isCollapsed
                                 isCollapsed ?
                                     ScreenManager.expand(screenIndex) :
                                     ScreenManager.collapse(screenIndex)
-                                showMessageBox('Completed', `Toggle Home Parent ${isCollapsed ? 'collapsed' : 'expanded'}`)
+                                showMessageBox('Completed', `Current screen children are now ${!isCollapsed ? 'collapsed' : 'expanded'}`)
                             } else {
                                 showMessageBox('???', `This should not happen`)
                             }

@@ -24,9 +24,8 @@ export default function App() {
         <ThemeProvider theme={darkTheme}>
             <NavigationContainer>
                 <DrawerNavigator
-                    claims={['!admin']}
-                    initialScreens={initialScreens}
-                    
+                    claims={['admin']}
+                    initialScreens={initialScreens}                    
                 />
                 <ModalPortal />
             </NavigationContainer>

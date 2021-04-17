@@ -1,7 +1,6 @@
 import React from 'react'
-import { Badge } from 'react-native-elements'
+import { Badge, Header } from 'react-native-elements'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { Header } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 

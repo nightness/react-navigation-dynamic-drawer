@@ -2,7 +2,8 @@ import React from 'react'
 import { StyleProp, TextStyle, ViewStyle, View } from 'react-native'
 import { DrawerItem } from '@react-navigation/drawer'
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
-import { Text, Badge, Icon } from 'react-native-elements'
+import { Text, Icon } from 'react-native-elements'
+import Badge from '../components/Badge'
 
 declare type Props = {
     /**
@@ -81,7 +82,7 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelStyle, lab
                 <View style={[{ flex: 1, marginLeft: -15, flexDirection: 'row' }, style]}>
                     <Text style={[{ flex: 3, fontWeight: '600', color }, labelStyle]}>{labelText}</Text>
                     { badgeText ?
-                        <Badge badgeStyle={{ height: 22 }}>{badgeText}</Badge>
+                        <Badge style={{ height: 22 }} value={badgeText} />
                         : <React.Fragment />
                     }
                 </View>
