@@ -140,7 +140,7 @@ export default ({ style, navigation }: Props) => {
                         title='Delete this Screen'
                         onPress={() => {
                             if (ScreenManager?.removeScreen && typeof screenIndex === 'number' && screenIndex >= 0) {
-                                const name = screens[screenIndex].routeName
+                                const name = screens[screenIndex].label
                                 showMessageBox(
                                     'Confirmation',
                                     `Are you sure you want to remove ${name}?`,
