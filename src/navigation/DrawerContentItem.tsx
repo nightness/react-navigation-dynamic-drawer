@@ -82,7 +82,7 @@ export default ({ focusedIconName, iconGroup, iconName, focused, labelStyle, lab
                 <View style={[{ flex: 1, marginLeft: -15, flexDirection: 'row' }, style]}>
                     <Text style={[{ flex: 3, fontWeight: '600', color }, labelStyle]}>{labelText}</Text>
                     { badgeText ?
-                        <Badge style={{ height: 22 }} value={badgeText} />
+                        <Badge fontSize={16} value={badgeText} />
                         : <React.Fragment />
                     }
                 </View>

@@ -47,11 +47,10 @@ type ContextType = {
   screens: NavigationElements
   ScreenManager?: ScreenManagerType
   hamburgerBadge?: string
-  setHamburgerBadge?: React.Dispatch<React.SetStateAction<string | undefined>>
   activeClaims?: string[]
   navigation?: NavigationHelpers<any>
   state?: DrawerNavigationState<ParamListBase>
-  screenIndex?: number
+  screenIndex: number
   setDrawerContent: (
     navigation: NavigationHelpers<any>,
     state: DrawerNavigationState<ParamListBase>
@@ -59,6 +58,7 @@ type ContextType = {
 }
 
 export const DrawerContext = createContext<ContextType>({
+  screenIndex: -1,
   badges: {},
   screens: [],
   setBadge: (routeName: string, value: string) => undefined,
@@ -73,10 +73,9 @@ const sameElements = (a: number[], b: number[]) =>
 
 export const DrawerProvider = ({ children, screens, activeClaims, screensDispatch }: Props) => {
   const [badges, setBadges] = useState<Badges>({})
-  const [hamburgerBadge, setHamburgerBadge] = useState<string>()
   const [navigation, setNavigation] = useState<NavigationHelpers<any>>()
   const [state, setState] = useState<DrawerNavigationState<ParamListBase>>()
-  const screenIndex = state ? state.index : -1
+  const screenIndex = state && state.index >= 0 ? state.index : -1
 
   const setBadge = (routeName: string, value: string): void => {
     const newState = { ...badges }
@@ -252,8 +251,6 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
         screenIndex,
         screens,
         ScreenManager,
-        hamburgerBadge,
-        setHamburgerBadge,
         activeClaims,
         setDrawerContent
       }}

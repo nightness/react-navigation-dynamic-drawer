@@ -36,8 +36,7 @@ export default ({
                         onPress={navigation.openDrawer}
                     />
                     { hamburgerBadgeText ?
-                        <Badge
-                            badgeStyle={{ marginTop: 10, marginLeft: -5, height: 20 }}
+                        <Badge                            
                             value={hamburgerBadgeText}
                             onPress={navigation.openDrawer}
                         /> : <></>
@@ -62,14 +61,14 @@ export default ({
                     width: '100%',
                 }}
                 backgroundColor="none"
-                backgroundImageStyle={{}}
+                //backgroundImageStyle={{}}
                 centerComponent={centerComponent}
                 leftComponent={leftComponent}
-                leftContainerStyle={{}}
+                //leftContainerStyle={{}}
                 placement="center"
                 rightComponent={rightComponent}
-                rightContainerStyle={{}}
-                statusBarProps={{}}
+                //rightContainerStyle={{}}
+                //statusBarProps={{}}
             />
         </>
     )

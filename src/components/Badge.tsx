@@ -1,26 +1,32 @@
 import React from 'react'
-import { Text, StyleProp, TouchableOpacity, ViewStyle } from 'react-native'
+import { Text, StyleProp, TouchableOpacity, ViewStyle, ColorValue } from 'react-native'
 
 interface Props {
-    value: string
-    style?: StyleProp<ViewStyle>
+    value?: string
+    color?: ColorValue
+    backgroundColor?: ColorValue
+    fontSize?: number
+    fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | undefined
     onPress?: () => any
 }
 
 export default ({
-    value,
-    style,
+    value = '',
+    color = 'white',
+    backgroundColor = 'blue',
+    fontSize,
+    fontWeight = '300',
     onPress,
     ...restProps
 }: Props) => {
     // TouchableHighlight is another option, this works nice though
     return (
         <TouchableOpacity
-            style={style}
+            style={{ backgroundColor, borderRadius: 10, paddingHorizontal: 20, justifyContent: 'center', alignContent: 'center'}}
             onPress={onPress}
             {...restProps}
         >
-            <Text>{value}</Text>
+            <Text style={{ color, fontSize, fontWeight }}>{value}</Text>
         </TouchableOpacity>
     )
 }

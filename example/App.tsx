@@ -25,6 +25,7 @@ export default function App() {
             <NavigationContainer>
                 <DrawerNavigator
                     claims={['admin']}
+                    background={['#89a', '#9ab', '#abc']}
                     initialScreens={initialScreens}                    
                 />
                 <ModalPortal />

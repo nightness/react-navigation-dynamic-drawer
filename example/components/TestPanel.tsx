@@ -27,7 +27,7 @@ interface InputBoxState extends BasicState {
 }
 
 export default ({ style, navigation }: Props) => {
-    const { screens, screenIndex, ScreenManager, setHamburgerBadge } = useContext(DrawerContext)
+    const { screens, screenIndex, ScreenManager, setBadge } = useContext(DrawerContext)
     const [showInputBoxModal, setShowInputBoxModal] = useState(false)
     const [inputBoxState, setInputBoxState] = useState<InputBoxState>({
         title: '',
@@ -45,7 +45,7 @@ export default ({ style, navigation }: Props) => {
     const getScreenConfig = () => {
         return (
             {
-                // Names here needs to be unique for routing to work
+                // Route names needs to be unique for routing to work, but labels do not need to be unique
                 label: 'Dynamic',
                 routeName: `Dynamic ${(Math.floor(Math.random() * 10000))}`,
                 component: Dynamic,
@@ -178,10 +178,12 @@ export default ({ style, navigation }: Props) => {
                 </View>
                 <View style={{ margin: 5 }}>
                     <Button
-                        title='Set Hamburger Badge'
+                        title='Set Screen Badge'
                         onPress={() => {
-                            showInputBox('Set Hamburger Badge', 'Text', '', false, (text) => {
-                                setHamburgerBadge?.(text)
+                            if (screenIndex === undefined || screenIndex === -1) return
+                            const routeName = screens[screenIndex].routeName
+                            showInputBox('Set Screen Badge', 'Text', '', false, (text) => {
+                                setBadge(routeName, text)
                             })
                         }}
                     />
