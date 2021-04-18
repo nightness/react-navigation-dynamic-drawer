@@ -65,7 +65,7 @@ export default (props: Props) => {
                             onPress={() => navigateTo(routeName)}
                             key={`${routeName}-${Math.random()}`}
                             badgeText={badges[routeName] as string}
-                            style={{ marginLeft: (15 * depth) }}
+                            iconContainerStyle={{ marginLeft: (15 * depth) }}
                         />
                     )
                 })}

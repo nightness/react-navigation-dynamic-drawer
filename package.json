@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-dynamic-drawer",
-  "version": "1.0.67",
+  "version": "1.0.74",
   "description": "Dynamically add or remove screens to/from a react-navigation/drawer and optionally organize them in a tree structure.",
   "author": "nightness",
   "license": "Apache-2.0",
@@ -34,6 +34,7 @@
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
+    "@types/react-native": "^0.64.3",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
@@ -60,12 +61,12 @@
     "dist"
   ],
   "dependencies": {
+    "@expo/vector-icons": "^12.0.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.9.4",
     "expo-linear-gradient": "~8.4.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.9",

@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleProp, TextStyle, ViewStyle, View } from 'react-native'
+import { StyleProp, TextStyle, ViewStyle, View, Text } from 'react-native'
 import { DrawerItem } from '@react-navigation/drawer'
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
-import { Text, Icon } from 'react-native-elements'
+import Icon from '../components/Icon'
 import Badge from '../components/Badge'
 
 declare type Props = {
@@ -60,6 +60,10 @@ declare type Props = {
      */
     pressOpacity?: string;
     /**
+     * Style object for the icon's view element.
+     */
+    iconContainerStyle?: StyleProp<ViewStyle>;
+     /**
      * Style object for the label element.
      */
     labelStyle?: StyleProp<TextStyle>;
@@ -73,30 +77,47 @@ declare type Props = {
     navigation: DrawerNavigationHelpers
 }
 
-export default ({ focusedIconName, iconGroup, iconName, focused, labelStyle, labelText, badgeText, style, ...restProps }: Props) => {
+export default ({
+    focusedIconName,
+    iconGroup,
+    iconName,
+    focused,
+    labelStyle,
+    labelText,
+    badgeText,
+    style,
+    onPress,
+    iconContainerStyle,
+    ...restProps
+}: Props) => {
     return (
-        <DrawerItem            
+        <DrawerItem
             pressOpacity='90%'
             focused={focused}
             label={({ focused, color }) => (
                 <View style={[{ flex: 1, marginLeft: -15, flexDirection: 'row' }, style]}>
                     <Text style={[{ flex: 3, fontWeight: '600', color }, labelStyle]}>{labelText}</Text>
                     { badgeText ?
-                        <Badge fontSize={16} value={badgeText} />
+                        <Badge fontSize={16} value={badgeText} onPress={onPress} />
                         : <React.Fragment />
                     }
                 </View>
             )}
             icon={({ focused, color, size }) => {
                 return (
-                    <Icon
-                        color={color}
-                        size={size}
-                        name={focused && focusedIconName ? focusedIconName : iconName}
-                        type={iconGroup}
-                    />
+                    <View style={iconContainerStyle}>
+                        <Icon                        
+                            onPress={onPress}
+                            color={color}
+                            size={size}
+                            name={focused && focusedIconName ? focusedIconName : iconName}
+                            //@ts-ignore
+                            type={iconGroup}
+                        />
+                    </View>
                 )
             }}
+            onPress={onPress}
             {...restProps}
         />
     )

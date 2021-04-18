@@ -2,35 +2,21 @@ import * as React from 'react';
 // @ts-ignore
 import { ModalPortal } from 'react-native-modals'
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
-import { ThemeProvider } from 'react-native-elements'
 import { DrawerNavigator, NavigationElements } from 'react-navigation-dynamic-drawer'
-//import { DrawerNavigator, NavigationElements } from './navigation/DynamicNavigation'
 import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
 
-const sharedTheme = {
-
-}
-
-const darkTheme = {
-    View: {
-        style: { background: 'red' }
-    },
-}
-
 export default function App() {
     return (
-        <ThemeProvider theme={darkTheme}>
-            <NavigationContainer>
-                <DrawerNavigator
-                    claims={['admin']}
-                    background={['#89a', '#9ab', '#abc']}
-                    initialScreens={initialScreens}                    
-                />
-                <ModalPortal />
-            </NavigationContainer>
-        </ThemeProvider>
+        <NavigationContainer>
+            <DrawerNavigator
+                claims={['admin']}
+                background={['#89a', '#9ab', '#abc']}
+                initialScreens={initialScreens}                    
+            />
+            <ModalPortal />
+        </NavigationContainer>
     )
 }
 
@@ -53,8 +39,8 @@ const initialScreens: NavigationElements = [
         routeName: 'Home Child 1',
         component: Home,
         initialParams: {
-            activeTintColor: '#123',
-            inactiveTintColor: '#000',
+            activeTintColor: '#222',
+            inactiveTintColor: '#222',
             iconGroup: 'ionicon',
             iconName: 'bug',
             focusedIconName: 'bug-outline'

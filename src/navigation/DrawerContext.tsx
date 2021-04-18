@@ -114,10 +114,9 @@ export const DrawerProvider = ({ children, screens, activeClaims, screensDispatc
 
   const ScreenManager: ScreenManagerType = {
     removeScreen: (index: number) => {
-      const type = 'remove'
       if (index === screenIndex && navigation && navigation.canGoBack())
         navigation.goBack()
-      screensDispatch({ type, index, screen })
+      screensDispatch({ type: 'remove', index })
     },
     insertScreen: (index: number, screen?: NavigationElement) =>
       screensDispatch({ type: 'insert', index, screen }),
