@@ -12,7 +12,7 @@ export interface NavigationParams {
     activeTintColor?: string,
     inactiveTintColor?: string,
     iconGroup?: string,
-    iconName: string,
+    iconName?: string,
     focusedIconName?: string,
 }
 

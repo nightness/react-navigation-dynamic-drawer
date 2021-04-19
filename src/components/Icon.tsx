@@ -5,12 +5,14 @@ import {
     Foundation, MaterialIcons, MaterialCommunityIcons, Octicons, SimpleLineIcons, Zocial
 } from '@expo/vector-icons';
 
+export type IconFamilies = 'antdesign' | 'entypo' | 'evilicon' | 'feather' | 'font-awesome' | 'font-awesome-5' | 'fontisto' | 'foundation' | 'ionicon' | 'material' | 'material-community' | 'octicon' | 'simple-line-icon' | 'zocial'
+
 interface Props {
     style?: StyleProp<TextStyle>
     color?: ColorValue
     size?: number
     name: string
-    type: 'antdesign' | 'entypo' | 'evilicon' | 'feather' | 'font-awesome' | 'font-awesome-5' | 'fontisto' | 'foundation' | 'ionicon' | 'material' | 'material-community' | 'octicon' | 'simple-line-icon' | 'zocial'
+    type: IconFamilies
     onPress?: () => any
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "react-navigation-dynamic-drawer",
-  "version": "1.0.78",
+  "version": "1.0.79",
   "description": "Dynamically add or remove screens to/from a react-navigation/drawer and optionally organize them in a tree structure.",
   "author": "nightness",
   "license": "Apache-2.0",

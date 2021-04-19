@@ -15,7 +15,7 @@ declare type Props = {
      * Icons to display for the `DrawerItem`.
      */
     iconGroup?: string;
-    iconName: string;
+    iconName?: string;
     focusedIconName?: string;
     /**
      * URL to use for the link to the tab.
@@ -103,19 +103,18 @@ export default ({
                     }
                 </View>
             )}
-            icon={({ focused, color, size }) => {
-                return (
-                    <Icon
-                        style={iconStyle}
-                        onPress={onPress}
-                        color={color}
-                        size={size}
-                        name={focused && focusedIconName ? focusedIconName : iconName}
-                        //@ts-ignore
-                        type={iconGroup}
-                    />
-                )
-            }}
+            icon={({ focused, color, size }) => iconName && iconGroup ?
+                <Icon
+                    style={iconStyle}
+                    onPress={onPress}
+                    color={color}
+                    size={size}
+                    name={focused && focusedIconName ? focusedIconName : iconName}
+                    //@ts-ignore
+                    type={iconGroup}
+                />
+                : <></>
+            }
             onPress={onPress}
             {...restProps}
         />

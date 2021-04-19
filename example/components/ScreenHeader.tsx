@@ -21,7 +21,7 @@ export default ({
     const iconSize = 28
 
     const centerComponent = (
-        <Text>
+        <Text style={{ fontSize: 16, fontWeight: '500' }}>
             {title}
         </Text>
     )
