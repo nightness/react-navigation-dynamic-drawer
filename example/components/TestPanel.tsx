@@ -43,22 +43,20 @@ export default ({ style, navigation }: Props) => {
     })
 
     const getScreenConfig = () => {
-        return (
-            {
-                // Route names needs to be unique for routing to work, but labels do not need to be unique
-                label: 'Dynamic',
-                routeName: `Dynamic ${(Math.floor(Math.random() * 10000))}`,
-                component: Dynamic,
-                initialParams: {
-                    activeTintColor: '#123',
-                    inactiveTintColor: '#000',
-                    iconGroup: 'antdesign',
-                    iconName: 'paperclip',
-                    focusedIconName: 'bug-outline'
-                },
-                depth: 0
-            }
-        ) as NavigationElement
+        return ({
+            // Route names needs to be unique for routing to work, but labels do not need to be unique
+            label: 'Dynamic',
+            routeName: `Dynamic ${(Math.floor(Math.random() * 10000))}`,
+            component: Dynamic,
+            initialParams: {
+                activeTintColor: '#642',
+                inactiveTintColor: '#642',
+                iconGroup: 'antdesign',
+                iconName: 'paperclip',
+                focusedIconName: 'bug-outline'
+            },
+            depth: 0
+        }) as NavigationElement
     }
 
     const showMessageBox = (title: string, message: string, askYesNo: boolean = false, confirm?: () => void) => {

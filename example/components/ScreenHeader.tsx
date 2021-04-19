@@ -60,7 +60,7 @@ export default ({
                 containerStyle={{
                     width: '100%',
                 }}
-                backgroundColor='grey'
+                backgroundColor='silver'
                 //backgroundImageStyle={{}}
                 centerComponent={centerComponent}
                 leftComponent={leftComponent}
