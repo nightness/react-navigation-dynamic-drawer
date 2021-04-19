@@ -1,7 +1,7 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 import React, { useContext, useState } from 'react'
 import { View, Button } from 'react-native'
-import { DrawerContext } from 'react-navigation-dynamic-drawer'
+import { DrawerContext, NavigationElement } from 'react-navigation-dynamic-drawer'
 import { Dynamic } from '../screens/Dynamic'
 import { MessageBoxModal } from '../modals/MessageBoxModal'
 import { InputBoxModal } from '../modals/InputBoxModal'
@@ -58,7 +58,7 @@ export default ({ style, navigation }: Props) => {
                 },
                 depth: 0
             }
-        )
+        ) as NavigationElement
     }
 
     const showMessageBox = (title: string, message: string, askYesNo: boolean = false, confirm?: () => void) => {

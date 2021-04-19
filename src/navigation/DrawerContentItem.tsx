@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleProp, TextStyle, ViewStyle, View, Text } from 'react-native'
 import { DrawerItem } from '@react-navigation/drawer'
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types'
-import Icon from '../components/Icon'
+import Icon, { IconFamilies } from '../components/Icon'
 import Badge from '../components/Badge'
 
 declare type Props = {
@@ -14,7 +14,7 @@ declare type Props = {
     /**
      * Icons to display for the `DrawerItem`.
      */
-    iconGroup?: string;
+    iconGroup?: IconFamilies;
     iconName?: string;
     focusedIconName?: string;
     /**
@@ -110,7 +110,6 @@ export default ({
                     color={color}
                     size={size}
                     name={focused && focusedIconName ? focusedIconName : iconName}
-                    //@ts-ignore
                     type={iconGroup}
                 />
                 : <></>

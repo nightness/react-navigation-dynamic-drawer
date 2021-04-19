@@ -1,4 +1,5 @@
 import { ComponentType } from 'react'
+import { IconFamilies } from '../components/Icon'
 
 export type Notifications = {
     groups: { [routeName: string] : {} }
@@ -11,7 +12,7 @@ export type Gradient = [string, string, ...string[]]
 export interface NavigationParams {
     activeTintColor?: string,
     inactiveTintColor?: string,
-    iconGroup?: string,
+    iconGroup?: IconFamilies,
     iconName?: string,
     focusedIconName?: string,
 }
