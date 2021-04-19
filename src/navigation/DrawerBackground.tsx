@@ -16,8 +16,14 @@ export default ({ children, background }: BackgroundProps) => {
             </LinearGradient>
         </View>
     )
+    if (background)
+        return (
+            <View style={{ flex: 1, backgroundColor: background }}>
+                {children}
+            </View>
+        )
     return (
-        <View style={{ flex: 1, backgroundColor: background }}>
+        <View style={{ flex: 1 }}>
             {children}
         </View>
     )

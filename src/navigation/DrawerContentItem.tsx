@@ -62,10 +62,10 @@ declare type Props = {
     /**
      * Style object for the icon's view element.
      */
-    iconContainerStyle?: StyleProp<ViewStyle>;
-     /**
-     * Style object for the label element.
-     */
+    iconStyle?: StyleProp<ViewStyle>;
+    /**
+    * Style object for the label element.
+    */
     labelStyle?: StyleProp<TextStyle>;
     /**
      * Style object for the wrapper element.
@@ -87,7 +87,7 @@ export default ({
     badgeText,
     style,
     onPress,
-    iconContainerStyle,
+    iconStyle,
     ...restProps
 }: Props) => {
     return (
@@ -105,16 +105,15 @@ export default ({
             )}
             icon={({ focused, color, size }) => {
                 return (
-                    <View style={iconContainerStyle}>
-                        <Icon                        
-                            onPress={onPress}
-                            color={color}
-                            size={size}
-                            name={focused && focusedIconName ? focusedIconName : iconName}
-                            //@ts-ignore
-                            type={iconGroup}
-                        />
-                    </View>
+                    <Icon
+                        style={iconStyle}
+                        onPress={onPress}
+                        color={color}
+                        size={size}
+                        name={focused && focusedIconName ? focusedIconName : iconName}
+                        //@ts-ignore
+                        type={iconGroup}
+                    />
                 )
             }}
             onPress={onPress}

@@ -1,11 +1,12 @@
 import React from 'react'
-import { Text, ColorValue } from 'react-native'
+import { Text, ColorValue, TextStyle, StyleProp } from 'react-native'
 import {
     AntDesign, Entypo, Feather, Ionicons, FontAwesome, FontAwesome5, EvilIcons, Fontisto,
     Foundation, MaterialIcons, MaterialCommunityIcons, Octicons, SimpleLineIcons, Zocial
 } from '@expo/vector-icons';
 
 interface Props {
+    style?: StyleProp<TextStyle>
     color?: ColorValue
     size?: number
     name: string
@@ -77,7 +78,7 @@ export default ({
             return <Zocial color={color} size={size} {...restProps} />
         }
         default: {
-            return <Text style={{ color, fontSize: size }}>{'?'}</Text>
+            return <Text style={{ color, fontWeight:'900', fontSize: size }}>{'?'}</Text>
         }
     }
 }
