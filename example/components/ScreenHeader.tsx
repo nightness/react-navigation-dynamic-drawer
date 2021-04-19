@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge, Header } from 'react-native-elements'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { DrawerNavigationProp } from '@react-navigation/drawer'
 
@@ -35,12 +35,14 @@ export default ({
                         // @ts-ignore
                         onPress={navigation.openDrawer}
                     />
-                    { hamburgerBadgeText ?
-                        <Badge                            
-                            value={hamburgerBadgeText}
-                            onPress={navigation.openDrawer}
-                        /> : <></>
-                    }
+                    <View style={{ paddingTop: 10 }}>
+                        { hamburgerBadgeText ?
+                            <Badge
+                                value={hamburgerBadgeText}
+                                onPress={navigation.openDrawer}
+                            /> : <></>
+                        }
+                    </View>
                 </>
             ) : (
                 <></>
@@ -55,21 +57,15 @@ export default ({
     )
 
     return (
-        <>
-            <Header
-                containerStyle={{
-                    width: '100%',
-                }}
-                backgroundColor='silver'
-                //backgroundImageStyle={{}}
-                centerComponent={centerComponent}
-                leftComponent={leftComponent}
-                //leftContainerStyle={{}}
-                placement="center"
-                rightComponent={rightComponent}
-                //rightContainerStyle={{}}
-                //statusBarProps={{}}
-            />
-        </>
+        <Header
+            containerStyle={{
+                width: '100%',
+            }}
+            backgroundColor='silver'
+            centerComponent={centerComponent}
+            leftComponent={leftComponent}
+            placement="center"
+            rightComponent={rightComponent}
+        />
     )
 }
