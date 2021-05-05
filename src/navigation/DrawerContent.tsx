@@ -12,11 +12,11 @@ import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
 interface Props extends DrawerContentComponentProps {
     background?: string | Gradient
     drawerStyle?: StyleProp<ViewStyle>,
-    labelStyle?: StyleProp<TextStyle>    
+    labelStyle?: StyleProp<TextStyle>
 }
 
 export default (props: Props) => {
-    const { activeClaims, badges, screens, setDrawerContent } = useContext(DrawerContext)
+    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
@@ -37,7 +37,7 @@ export default (props: Props) => {
                 {routeNames.map((routeName, routeIndex) => {
                     const currentRoute = routes.filter(value => value.name === routeName)?.[0]
                     const params = currentRoute.params as NavigationParams
-                    const { label, depth, isHidden, isRestricted } = screens[routeIndex]
+                    const { label, depth, isHidden, isRestricted, claims } = screens[routeIndex]
                     if (depth > currentDepth) {
                         currentDepth++
                         elementStack.push(screens[routeIndex - 1])
@@ -46,8 +46,10 @@ export default (props: Props) => {
                         currentDepth--
                         elementStack.pop()
                     }
-                    const hiddenParents = elementStack.filter(
-                        (item) => item.isHidden || item.isCollapsed || item.isRestricted)
+                    const hiddenParents = elementStack.filter((item) =>
+                        item.isHidden || item.isCollapsed || item.isRestricted ||
+                        (claims && (item.claims?.some(item => claims.includes(item)))
+                    ))
                     const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
 
                     if (!isVisible)

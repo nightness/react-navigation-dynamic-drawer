@@ -6,11 +6,15 @@ import { DrawerNavigator, NavigationElements } from 'react-navigation-dynamic-dr
 import { Home } from './screens/Home'
 import { Dashboard } from './screens/Dashboard'
 import { Playground } from './screens/Playground'
+import { Text } from 'react-native';
 
 export default function App() {
     return (
         <NavigationContainer>
             <DrawerNavigator
+                header={
+                    () => <Text>Hello</Text>
+                }
                 claims={['admin']}
                 background={['#89a', '#9ab', '#abc']}
                 initialScreens={initialScreens}                    
