@@ -5,7 +5,9 @@ import {
     Foundation, MaterialIcons, MaterialCommunityIcons, Octicons, SimpleLineIcons, Zocial
 } from '@expo/vector-icons';
 
-export type IconFamilies = 'antdesign' | 'entypo' | 'evilicon' | 'feather' | 'font-awesome' | 'font-awesome-5' | 'fontisto' | 'foundation' | 'ionicon' | 'material' | 'material-community' | 'octicon' | 'simple-line-icon' | 'zocial'
+export type IconFamilies = 'antdesign' | 'entypo' | 'evilicon' | 'feather' |
+    'font-awesome' | 'font-awesome-5' | 'fontisto' | 'foundation' | 'ionicon' |
+    'material' | 'material-community' | 'octicon' | 'simple-line-icon' | 'zocial'
 
 interface Props {
     style?: StyleProp<TextStyle>
@@ -50,11 +52,11 @@ export default ({
         case 'fontisto': {
             //@ts-ignore
             return <Fontisto color={color} size={size} {...restProps} />
-        }                      
+        }
         case 'foundation': {
             //@ts-ignore
             return <Foundation color={color} size={size} {...restProps} />
-        }                      
+        }
         case 'ionicon': {
             //@ts-ignore
             return <Ionicons color={color} size={size} {...restProps} />
@@ -80,7 +82,7 @@ export default ({
             return <Zocial color={color} size={size} {...restProps} />
         }
         default: {
-            return <Text style={{ color, fontWeight:'900', fontSize: size }}>{'?'}</Text>
+            return <Text style={{ color, fontWeight: '900', fontSize: size }}>{'?'}</Text>
         }
     }
 }

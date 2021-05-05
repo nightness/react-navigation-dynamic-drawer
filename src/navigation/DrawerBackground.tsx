@@ -9,13 +9,14 @@ interface BackgroundProps {
 }
 
 export default ({ children, background }: BackgroundProps) => {
-    if (background && Array.isArray(background)) return (
-        <View style={{ flex: 1 }}>
-            <LinearGradient style={{ flex: 1 }} colors={background}>
-                {children}
-            </LinearGradient>
-        </View>
-    )
+    if (background && Array.isArray(background))
+        return (
+            <View style={{ flex: 1 }}>
+                <LinearGradient style={{ flex: 1 }} colors={background}>
+                    {children}
+                </LinearGradient>
+            </View>
+        )
     if (background)
         return (
             <View style={{ flex: 1, backgroundColor: background }}>

@@ -1,12 +1,14 @@
 import React from 'react'
-import { Text, StyleProp, TouchableOpacity, ViewStyle, ColorValue } from 'react-native'
+import { Text, TouchableOpacity, ColorValue } from 'react-native'
+
+export type FontWeightValues = "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900"
 
 interface Props {
     value?: string
     color?: ColorValue
     backgroundColor?: ColorValue
     fontSize?: number
-    fontWeight?: "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | undefined
+    fontWeight?: FontWeightValues
     onPress?: () => any
 }
 
