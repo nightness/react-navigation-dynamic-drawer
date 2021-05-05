@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import React, { useReducer } from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createDrawerNavigator, DrawerNavigationOptions } from '@react-navigation/drawer'
 import { DrawerProvider } from './DrawerContext'
 import DrawerContent from './DrawerContent'
 import { ScreensReducer } from './RoutingReducer'
@@ -8,7 +8,7 @@ import { Gradient, NavigationElements } from './NavigationTypes'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
-interface Props {
+interface Props extends DrawerNavigationOptions {
     children?: JSX.Element | JSX.Element[],
     claims?: string[],
     background?: string | Gradient,
