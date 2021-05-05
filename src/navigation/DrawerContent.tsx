@@ -51,7 +51,8 @@ export default (props: Props) => {
                         return (<View key={`${routeName}-${Math.random()}`} />)
 
                     const hiddenParents = elementStack.filter((item) =>
-                        item.isHidden || item.isCollapsed || item.isRestricted)
+                        item.isHidden || item.isCollapsed || item.isRestricted ||
+                        (item.claims?.some(item => !activeClaims?.includes(item))))
                     const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`} />)

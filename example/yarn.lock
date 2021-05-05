@@ -7300,10 +7300,10 @@ react-navigation-drawer@^2.7.0:
   resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-2.7.0.tgz#794b4214a6b5debde1f8f90e18e3e63aa738e628"
   integrity sha512-BKQSTpFPGVI3caFlIbY921NYTRDAf9XFCCmyy4aDlxZLI5FNh8FqzrG10voc5AGy7RegjLdNkkJa40ugu0I5jA==
 
-react-navigation-dynamic-drawer@^1.0.93:
-  version "1.0.93"
-  resolved "https://registry.yarnpkg.com/react-navigation-dynamic-drawer/-/react-navigation-dynamic-drawer-1.0.93.tgz#ab37b2ad1d5374d501f1b644ada040d84cb51e45"
-  integrity sha512-W514oECB9UxO+x2cprCY0wLrJM3GzUPlVKgYbxUhQRQ/hqf6YjOqEEC/DSVivCD51QPKNbhdpaGUd114z37wKw==
+react-navigation-dynamic-drawer@^1.0.97:
+  version "1.0.97"
+  resolved "https://registry.yarnpkg.com/react-navigation-dynamic-drawer/-/react-navigation-dynamic-drawer-1.0.97.tgz#4ade99c5b51e46c7a629b35acb6bca112ce5ff95"
+  integrity sha512-gD+lttH6O7k/cM77Uq7uChQ9WoPc7LfIGVHY4zLAL3v7ik5Y8U3yN8IHYvrBojitXk2i/9ELYTvO9M9UjElKqg==
   dependencies:
     "@expo/vector-icons" "^12.0.4"
     "@react-native-community/masked-view" "^0.1.10"
