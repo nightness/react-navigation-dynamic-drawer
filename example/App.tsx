@@ -15,7 +15,7 @@ export default function App() {
                 header={
                     () => <Text>Hello</Text>
                 }
-                claims={['admin']}
+                claims={['admin', 'moderator']}
                 background={['#89a', '#9ab', '#abc']}
                 initialScreens={initialScreens}                    
             />
@@ -49,6 +49,7 @@ const initialScreens: NavigationElements = [
             iconName: 'bug',
             focusedIconName: 'bug-outline'
         },
+        claims: ['moderator'],
         depth: 1
     },
     {
@@ -89,7 +90,6 @@ const initialScreens: NavigationElements = [
             focusedIconName: 'bug-outline'
         },
         claims: ['admin'],
-        //isCollapsed: true,
         depth: 0
     },
     {

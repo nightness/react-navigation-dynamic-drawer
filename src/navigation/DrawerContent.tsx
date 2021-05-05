@@ -16,7 +16,7 @@ interface Props extends DrawerContentComponentProps {
 }
 
 export default (props: Props) => {
-    const { badges, screens, setDrawerContent } = useContext(DrawerContext)
+    const { activeClaims, badges, screens, setDrawerContent } = useContext(DrawerContext)
     const { state, navigation } = props;
     const { routeNames, routes } = state
     const navigateTo = (screenName: string) => {
@@ -46,12 +46,13 @@ export default (props: Props) => {
                         currentDepth--
                         elementStack.pop()
                     }
-                    const hiddenParents = elementStack.filter((item) =>
-                        item.isHidden || item.isCollapsed || item.isRestricted ||
-                        (claims && (item.claims?.some(item => claims.includes(item)))
-                    ))
-                    const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
+                    const hasClaim = (!claims || (activeClaims?.some(item => claims.includes(item))))
+                    if (!hasClaim)
+                        return (<View key={`${routeName}-${Math.random()}`} />)
 
+                    const hiddenParents = elementStack.filter((item) =>
+                        item.isHidden || item.isCollapsed || item.isRestricted)
+                    const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
                     if (!isVisible)
                         return (<View key={`${routeName}-${Math.random()}`} />)
 
