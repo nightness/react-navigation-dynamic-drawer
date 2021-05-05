@@ -46,16 +46,19 @@ export default (props: Props) => {
                         currentDepth--
                         elementStack.pop()
                     }
-                    const hasClaim = (!claims || (activeClaims?.some(item => claims.includes(item))))
-                    if (!hasClaim)
-                        return (<View key={`${routeName}-${Math.random()}`} />)
 
+                    const noopElement = <View key={`${routeName}-${Math.random()}`} />
+
+                    // Does this route require a claim to be visible?
+                    const hasClaim = (!claims || (activeClaims?.some(item => claims.includes(item))))
+                    if (!hasClaim) return noopElement
+
+                    // Is the parent visible?
                     const hiddenParents = elementStack.filter((item) =>
                         item.isHidden || item.isCollapsed || item.isRestricted ||
                         (item.claims?.some(item => !activeClaims?.includes(item))))
                     const isVisible = (!isHidden && !isRestricted && hiddenParents.length === 0)
-                    if (!isVisible)
-                        return (<View key={`${routeName}-${Math.random()}`} />)
+                    if (!isVisible) return noopElement
 
                     return (
                         <DrawerContentItem
