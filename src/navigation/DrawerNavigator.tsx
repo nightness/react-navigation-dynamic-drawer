@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'
 import React, { useReducer } from 'react'
-import { TabRouterOptions  } from '@react-navigation/native'
+import { DefaultNavigatorOptions, TabRouterOptions } from '@react-navigation/native'
 import { createDrawerNavigator, DrawerNavigationOptions } from '@react-navigation/drawer'
 import { DrawerProvider } from './DrawerContext'
 import DrawerContent from './DrawerContent'
@@ -10,19 +10,46 @@ import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 
 const Drawer = createDrawerNavigator()
 
+type DrawerProps =
+    React.ComponentType<Omit<React.ComponentProps<any>, keyof DefaultNavigatorOptions<any, any>>
+        & DefaultNavigatorOptions<any, any>>
+
 type Props = DrawerNavigationOptions & TabRouterOptions & {
     children?: JSX.Element | JSX.Element[],
-    claims?: string[],
-    background?: string | Gradient,
     initialScreens: NavigationElements,
+    claims?: string[],
+    detachInactiveScreens?: boolean,
+    background?: string | Gradient,
     drawerStyle?: StyleProp<ViewStyle>,
-    labelStyle?: StyleProp<TextStyle>
+    labelStyle?: StyleProp<TextStyle>,
+    backBehavior?: 'initialRoute' | 'firstRoute' | 'history' | 'order' | 'none',
+    drawerPosition?: 'left' | 'right',
+    drawerType?: 'front' | 'back' | 'slide' | 'permanent',
+    edgeWidth?: number,
+    initialRouteName?: string,
+    keyboardDismissMode?: 'on-drag' | 'none',
+    lazy?: boolean,
+    minSwipeDistance?: number,
+    openByDefault?: boolean,
+    overlayColor?: string,
 }
 
 export default ({
     initialScreens,
     claims,
     children: parentChildren,
+    detachInactiveScreens,
+    drawerPosition,
+    drawerType,
+    drawerStyle,
+    backBehavior,
+    edgeWidth,
+    initialRouteName,
+    keyboardDismissMode,
+    lazy,
+    minSwipeDistance,
+    openByDefault,
+    overlayColor,
     ...restProps
 }: Props) => {
     // The stateful list of screens
@@ -34,8 +61,19 @@ export default ({
     return (
         <DrawerProvider activeClaims={claims} screens={screens} screensDispatch={screensDispatch}>
             <Drawer.Navigator
-                {...restProps}
-                drawerContent={props => <DrawerContent {...restProps} {...props}/>}>
+                detachInactiveScreens={detachInactiveScreens}
+                drawerPosition={drawerPosition}
+                drawerType={drawerType}
+                backBehavior={backBehavior}
+                drawerStyle={drawerStyle}
+                edgeWidth={edgeWidth}
+                initialRouteName={initialRouteName}
+                keyboardDismissMode={keyboardDismissMode}
+                lazy={lazy}
+                minSwipeDistance={minSwipeDistance}
+                openByDefault={openByDefault}
+                overlayColor={overlayColor}                
+                drawerContent={props => <DrawerContent {...restProps} {...props} />}>
                 {screens.map((screen, index) => {
                     const depthDelta = screen.depth - currentDepth
                     if (depthDelta > 1)
